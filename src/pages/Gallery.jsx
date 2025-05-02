@@ -4,50 +4,56 @@ const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [setStartPosition] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
   const autoplayRef = useRef(null);
-  
+  const carouselRef = useRef(null);
+  const dragStartRef = useRef(0);
+  const dragCurrentRef = useRef(0);
+
   const categories = ['all', 'rooms', 'dining', 'amenities', 'experiences'];
-  
+
   const images = [
-    { src: '/src/assets/images/image3.avif', category: 'rooms', title: 'Deluxe Ocean View Room' },
-    { src: '/src/assets/images/image4.avif', category: 'rooms', title: 'Presidential Suite' },
-    { src: '/src/assets/images/image5.avif', category: 'dining', title: 'Oceanfront Restaurant' },
-    { src: '/src/assets/images/image6.avif', category: 'dining', title: 'Sunset Bar' },
-    { src: '/src/assets/images/image7.avif', category: 'amenities', title: 'Infinity Pool' },
-    { src: '/src/assets/images/images-1.PNG', category: 'amenities', title: 'Luxury Spa' },
-    { src: '/src/assets/images/poyotomo-lake-is-fishing-spot-with-beautiful-mountain-views-nature_103127-902.avif', category: 'experiences', title: 'Beach Yoga' },
-    { src: '/src/assets/images/pool-holiday-leisure-hotel-blue_1203-3913.avif', category: 'experiences', title: 'Scuba Diving' },
-    { src: '/src/assets/images/pool_1308-5002.avif', category: 'rooms', title: 'Garden Suite' },
-    { src: '/src/assets/images/swimming-pool_74190-2104.avif', category: 'amenities', title: 'Fitness Center' },
-    { src: '/src/assets/images/WhatsApp Image 2025-04-22 at 2.46.21 PM (1).jpeg', category: 'dining', title: 'Fine Dining Experience' },
-    { src: '/src/assets/images/WhatsApp Image 2025-04-22 at 2.46.21 PM.jpeg', category: 'experiences', title: 'Sunset Cruise' }
+    { src: '/src/assets/images/image6.avif', category: 'rooms', title: 'Deluxe Ocean View Room' },
+    { src: '/src/assets/images/image5.avif', category: 'rooms', title: 'Presidential Suite' },
+    { src: '/src/assets/images/image4.avif', category: 'dining', title: 'Oceanfront Restaurant' },
+    { src: '/src/assets/images/image3.avif', category: 'dining', title: 'Sunset Bar' },
+    { src: '/src/assets/images/image6.avif', category: 'amenities', title: 'Infinity Pool' },
+    { src: '/src/assets/images/image5.avif', category: 'amenities', title: 'Luxury Spa' },
+    { src: '/src/assets/images/image4.avif', category: 'experiences', title: 'Beach Yoga' },
+    { src: '/src/assets/images/image3.avif', category: 'experiences', title: 'Scuba Diving' },
+    { src: '/src/assets/images/image4.avif', category: 'rooms', title: 'Garden Suite' },
+    { src: '/src/assets/images/image5.avif', category: 'amenities', title: 'Fitness Center' },
+    { src: '/src/assets/images/image6.avif', category: 'dining', title: 'Fine Dining Experience' },
+    { src: '/src/assets/images/image3.avif', category: 'experiences', title: 'Sunset Cruise' }
   ];
-  
+
   const filteredImages = activeCategory === 'all' 
     ? images 
     : images.filter(image => image.category === activeCategory);
-  
+
   // Reset carousel when category changes
   useEffect(() => {
     setCurrentIndex(0);
     resetAutoplay();
   }, [activeCategory]);
-  
-  // Handle autoplay
+
+  // Autoplay effect
   useEffect(() => {
     if (isAutoplay) {
       autoplayRef.current = setInterval(() => {
         setCurrentIndex(prevIndex => (prevIndex + 1) % filteredImages.length);
-      }, 3000);
+      }, 4000);
     }
-    
+
     return () => {
       if (autoplayRef.current) {
         clearInterval(autoplayRef.current);
       }
     };
   }, [isAutoplay, filteredImages.length]);
-  
+
   const resetAutoplay = () => {
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
@@ -56,106 +62,113 @@ const Gallery = () => {
     if (isAutoplay) {
       autoplayRef.current = setInterval(() => {
         setCurrentIndex(prevIndex => (prevIndex + 1) % filteredImages.length);
-      }, 3000);
+      }, 4000);
     }
   };
-  
+
   const pauseAutoplay = () => {
     setIsAutoplay(false);
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
     }
   };
-  
+
   const resumeAutoplay = () => {
     setIsAutoplay(true);
   };
-  
+
   const handlePrevious = () => {
     pauseAutoplay();
     setCurrentIndex(prevIndex => (prevIndex - 1 + filteredImages.length) % filteredImages.length);
   };
-  
+
   const handleNext = () => {
     pauseAutoplay();
     setCurrentIndex(prevIndex => (prevIndex + 1) % filteredImages.length);
   };
-  
 
-  
-  // Get position class for an item
-  const getPositionClass = (index) => {
-    if (index === currentIndex) return 'center';
-    
+  const getCardPosition = (index) => {
+    const activeIndex = currentIndex;
     const totalItems = filteredImages.length;
-    if (totalItems <= 1) return 'center';
     
-    const prev1 = (currentIndex - 1 + totalItems) % totalItems;
-    const prev2 = (currentIndex - 2 + totalItems) % totalItems;
-    const next1 = (currentIndex + 1) % totalItems;
-    const next2 = (currentIndex + 2) % totalItems;
+    let distance = (index - activeIndex + totalItems) % totalItems;
+    if (distance > totalItems / 2) distance -= totalItems;
     
-    if (index === prev1) return 'prev-1';
-    if (index === prev2) return 'prev-2';
-    if (index === next1) return 'next-1';
-    if (index === next2) return 'next-2';
-    
-    return 'hidden';
+    return {
+      rotateY: distance * 40,
+      z: distance === 0 ? 0 : -200,
+      x: distance * 50,
+      scale: 1 - Math.min(0.3, Math.abs(distance) * 0.15),
+      opacity: 1 - Math.min(0.5, Math.abs(distance) * 0.2),
+      zIndex: totalItems - Math.abs(distance)
+    };
   };
-  
-  // Handle touch events for mobile
-  const touchStartX = useRef(null);
-  
-  const handleTouchStart = (event) => {
-    touchStartX.current = event.touches[0].clientX;
+
+  const onDragStart = (e) => {
     pauseAutoplay();
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    
+    setIsDragging(true);
+    setStartPosition(clientX);
+    dragStartRef.current = clientX;
+    dragCurrentRef.current = clientX;
+  };
+
+  const onDragMove = (e) => {
+    if (!isDragging) return;
+    
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    
+    dragCurrentRef.current = clientX;
+    const diff = dragCurrentRef.current - dragStartRef.current;
+    setCurrentTranslate(diff);
   };
   
-  const handleTouchEnd = (event) => {
-    if (touchStartX.current === null) return;
+  const onDragEnd = () => {
+    if (!isDragging) return;
     
-    const touchEndX = event.changedTouches[0].clientX;
-    const diff = touchEndX - touchStartX.current;
+    const diff = currentTranslate;
     
-    if (diff > 50) { // Swipe right - go to previous
-      handlePrevious();
-    } else if (diff < -50) { // Swipe left - go to next
+    if (diff < -50) {
       handleNext();
+    } else if (diff > 50) {
+      handlePrevious();
     }
     
-    touchStartX.current = null;
+    setIsDragging(false);
+    setCurrentTranslate(0);
   };
-  
+
   return (
-    <div>
-      {/* Hero Section */}
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      {/* Hero Banner */}
       <div className="relative pt-32 pb-16 md:pb-32">
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-black/70 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-black/80 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/api/placeholder/1920/600')" }}
+          style={{ backgroundImage: "url('/src/assets/images/plant-foliage-board.jpg')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
             Gallery
           </h1>
-          <p className="text-xl text-gray-100 max-w-3xl">
+          <p className="text-xl text-gray-300 max-w-3xl">
             Explore the beauty and luxury of Paradise Resort through our photo gallery.
           </p>
         </div>
       </div>
-      
-      {/* Filter Section */}
-      <section className="pt-12 pb-6">
+
+      {/* Category Filter */}
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3 mb-8">
             {categories.map((category) => (
               <button
                 key={category}
-                className={`px-4 py-2 rounded-full capitalize transition-colors duration-300 ${
+                className={`px-6 py-2 rounded-full capitalize font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-teal-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20 scale-105 ring-2 ring-teal-400'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-teal-400 shadow-md'
                 }`}
                 onClick={() => setActiveCategory(category)}
               >
@@ -165,42 +178,66 @@ const Gallery = () => {
           </div>
         </div>
       </section>
-      
-      {/* Carousel Section */}
+
+      {/* 3D Carousel */}
       <section className="pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredImages.length > 0 ? (
-            <>
+            <div className="carousel-section">
               <div 
-                className="clear-carousel-container"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
+                className="carousel-container"
+                ref={carouselRef}
+                onMouseDown={onDragStart}
+                onMouseMove={onDragMove}
+                onMouseUp={onDragEnd}
+                onMouseLeave={onDragEnd}
+                onTouchStart={onDragStart}
+                onTouchMove={onDragMove}
+                onTouchEnd={onDragEnd}
               >
-                <div className="clear-carousel-track">
-                  {filteredImages.map((image, index) => (
-                    <div 
-                      key={index}
-                      className={`clear-carousel-item ${getPositionClass(index)}`}
-                    >
-                      <div className="clear-carousel-card">
-                        <img 
-                          src={image.src}
-                          alt={image.title}
-                          className="clear-carousel-image"
-                          loading="lazy"
-                        />
-                        <div className="clear-carousel-caption">
-                          <h3>{image.title}</h3>
-                          <span className="category-badge">{image.category}</span>
+                <div className="carousel-stage">
+                  {filteredImages.map((image, index) => {
+                    const pos = getCardPosition(index);
+                    return (
+                      <div 
+                        key={index}
+                        className={`carousel-card ${currentIndex === index ? 'active' : ''}`}
+                        style={{
+                          transform: `
+                            translateX(${pos.x + (currentIndex === index ? currentTranslate * 0.1 : 0)}px) 
+                            translateZ(${pos.z}px) 
+                            rotateY(${pos.rotateY}deg) 
+                            scale(${pos.scale})
+                          `,
+                          opacity: pos.opacity,
+                          zIndex: pos.zIndex
+                        }}
+                        onClick={() => {
+                          if (index !== currentIndex) {
+                            pauseAutoplay();
+                            setCurrentIndex(index);
+                          }
+                        }}
+                      >
+                        <div className="carousel-card-inner">
+                          <img 
+                            src={image.src} 
+                            alt={image.title} 
+                            className="carousel-image"
+                          />
+                          <div className={`carousel-caption ${currentIndex === index ? 'active' : ''}`}>
+                            <h3 className="card-title">{image.title}</h3>
+                            <span className="card-category">{image.category}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
-                
-                {/* Navigation buttons */}
+
+                {/* Navigation Controls */}
                 <button 
-                  className="clear-carousel-nav prev"
+                  className="carousel-nav prev"
                   onClick={handlePrevious}
                   aria-label="Previous image"
                 >
@@ -208,9 +245,9 @@ const Gallery = () => {
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
                 </button>
-                
+
                 <button 
-                  className="clear-carousel-nav next"
+                  className="carousel-nav next"
                   onClick={handleNext}
                   aria-label="Next image"
                 >
@@ -219,432 +256,431 @@ const Gallery = () => {
                   </svg>
                 </button>
               </div>
-              
-              {/* Thumbnails and Indicators */}
-              <div className="clear-carousel-controls">
-                <div className="clear-carousel-dots">
-                  {filteredImages.map((_, index) => (
-                    <button
+
+              {/* Carousel Controls & Indicators */}
+              <div className="carousel-controls">
+                <div className="flex items-center justify-between">
+                  <div className="carousel-indicators">
+                    {filteredImages.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`carousel-indicator ${currentIndex === index ? 'active' : ''}`}
+                        onClick={() => {
+                          pauseAutoplay();
+                          setCurrentIndex(index);
+                        }}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button 
+                    className={`autoplay-button ${isAutoplay ? 'active' : ''}`}
+                    onClick={() => isAutoplay ? pauseAutoplay() : resumeAutoplay()}
+                    aria-label={isAutoplay ? "Pause slideshow" : "Play slideshow"}
+                  >
+                    {isAutoplay ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Thumbnails */}
+              <div className="thumbnails-container">
+                <div className="thumbnails-track">
+                  {filteredImages.map((image, index) => (
+                    <div
                       key={index}
-                      className={`carousel-dot ${currentIndex === index ? 'active' : ''}`}
+                      className={`thumbnail ${currentIndex === index ? 'active' : ''}`}
                       onClick={() => {
                         pauseAutoplay();
                         setCurrentIndex(index);
                       }}
-                      aria-label={`Go to image ${index + 1}`}
-                    ></button>
+                    >
+                      <img 
+                        src={image.src}
+                        alt={`Thumbnail ${index + 1}`}
+                        loading="lazy"
+                      />
+                      <div className="thumbnail-overlay">
+                        <span className="thumbnail-index">{index + 1}</span>
+                      </div>
+                    </div>
                   ))}
                 </div>
-                
-                <button 
-                  className={`autoplay-toggle ${isAutoplay ? 'playing' : ''}`}
-                  onClick={() => isAutoplay ? pauseAutoplay() : resumeAutoplay()}
-                >
-                  {isAutoplay ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                      <rect x="6" y="4" width="4" height="16"></rect>
-                      <rect x="14" y="4" width="4" height="16"></rect>
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                  )}
-                </button>
               </div>
-            </>
-          ) : (
-            <div className="text-center py-20">
-              <p className="text-gray-500 text-lg">No images available for this category.</p>
             </div>
-          )}
-          
-          {/* Thumbnail Strip */}
-          {filteredImages.length > 0 && (
-            <div className="thumbnail-strip mt-8">
-              <div className="thumbnail-container">
-                {filteredImages.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`thumbnail ${currentIndex === index ? 'active' : ''}`}
-                    onClick={() => {
-                      pauseAutoplay();
-                      setCurrentIndex(index);
-                    }}
-                  >
-                    <img 
-                      src={image.src}
-                      alt={`Thumbnail ${index + 1}`}
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
+          ) : (
+            <div className="text-center py-20 bg-gray-800 rounded-lg shadow-md">
+              <p className="text-gray-400 text-lg">No images available for this category.</p>
             </div>
           )}
         </div>
       </section>
-      
-      {/* CSS for Clear 3D Carousel */}
+
       <style jsx>{`
-        .clear-carousel-container {
+        .carousel-section {
+          padding: 20px 0;
+        }
+
+        .carousel-container {
           position: relative;
-          height: 500px;
-          max-width: 100%;
+          height: 580px;
           margin: 0 auto;
           perspective: 1200px;
-          overflow: hidden;
+          overflow: visible;
+          user-select: none;
         }
-        
-        .clear-carousel-track {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          perspective: 1200px;
-          transform-style: preserve-3d;
-        }
-        
-        .clear-carousel-item {
-          position: absolute;
-          width: 60%;
-          max-width: 600px;
-          height: 90%;
-          left: 0;
-          right: 0;
-          margin: auto;
-          transition: transform 0.8s ease, opacity 0.8s ease;
-          transform-style: preserve-3d;
-        }
-        
-        .clear-carousel-item.center {
-          z-index: 10;
-          transform: translateZ(0) scale(1);
-          opacity: 1;
-        }
-        
-        .clear-carousel-item.prev-1 {
-          z-index: 9;
-          transform: translateX(-75%) translateZ(-100px) rotateY(10deg) scale(0.85);
-          opacity: 0.9;
-        }
-        
-        .clear-carousel-item.next-1 {
-          z-index: 9;
-          transform: translateX(75%) translateZ(-100px) rotateY(-10deg) scale(0.85);
-          opacity: 0.9;
-        }
-        
-        .clear-carousel-item.prev-2 {
-          z-index: 8;
-          transform: translateX(-120%) translateZ(-200px) rotateY(20deg) scale(0.7);
-          opacity: 0.7;
-        }
-        
-        .clear-carousel-item.next-2 {
-          z-index: 8;
-          transform: translateX(120%) translateZ(-200px) rotateY(-20deg) scale(0.7);
-          opacity: 0.7;
-        }
-        
-        .clear-carousel-item.hidden {
-          opacity: 0;
-          pointer-events: none;
-        }
-        
-        .clear-carousel-card {
-          width: 100%;
-          height: 100%;
+
+        .carousel-stage {
           position: relative;
-          border-radius: 12px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-          overflow: hidden;
-          background-color: white;
+          width: 100%;
+          height: 100%;
           transform-style: preserve-3d;
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
-          backface-visibility: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-        
-        .clear-carousel-item.center .clear-carousel-card {
-          box-shadow: 0 15px 50px rgba(0, 150, 136, 0.4);
+
+        .carousel-card {
+          position: absolute;
+          width: 380px;
+          height: 500px;
+          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+          cursor: pointer;
+        }
+
+        .carousel-card.active {
+          cursor: default;
+        }
+
+        .carousel-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          border-radius: 20px;
+          overflow: hidden;
+          transform-style: preserve-3d;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+          transition: all 0.6s ease;
+        }
+
+        .carousel-card.active .carousel-card-inner {
+          box-shadow: 0 25px 50px rgba(20, 184, 166, 0.3), 0 0 30px rgba(20, 184, 166, 0.2);
           border: 3px solid #14b8a6;
         }
-        
-        .clear-carousel-image {
+
+        .carousel-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 10px;
+          transition: transform 1s ease;
         }
-        
-        .clear-carousel-caption {
+
+        .carousel-card:hover .carousel-image {
+          transform: scale(1.05);
+        }
+
+        .carousel-caption {
           position: absolute;
           bottom: 0;
           left: 0;
           right: 0;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
-          padding: 20px;
+          padding: 25px;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
           color: white;
-          border-bottom-left-radius: 10px;
-          border-bottom-right-radius: 10px;
+          transform: translateY(100%);
+          opacity: 0;
+          transition: all 0.5s ease;
         }
-        
-        .clear-carousel-caption h3 {
-          margin: 0 0 10px;
+
+        .carousel-caption.active,
+        .carousel-card:hover .carousel-caption {
+          transform: translateY(0);
+          opacity: 1;
+        }
+
+        .card-title {
           font-size: 24px;
           font-weight: 600;
+          margin: 0 0 10px;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
-        
-        .category-badge {
+
+        .card-category {
           display: inline-block;
           background-color: #14b8a6;
           color: white;
-          padding: 4px 12px;
-          border-radius: 20px;
           font-size: 14px;
+          font-weight: 500;
+          padding: 5px 15px;
+          border-radius: 30px;
           text-transform: capitalize;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
-        
-        .clear-carousel-nav {
+
+        .carousel-nav {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          width: 50px;
-          height: 50px;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
-          background-color: white;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          background: rgba(31, 41, 55, 0.9);
           display: flex;
           align-items: center;
           justify-content: center;
-          z-index: 20;
           cursor: pointer;
+          z-index: 100;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+          color: #14b8a6;
           border: none;
-          transition: all 0.2s ease;
+          outline: none;
+          transition: all 0.3s ease;
         }
-        
-        .clear-carousel-nav:hover {
-          background-color: #14b8a6;
+
+        .carousel-nav:hover {
+          background: #14b8a6;
           color: white;
           transform: translateY(-50%) scale(1.1);
+          box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
         }
-        
-        .clear-carousel-nav.prev {
-          left: 20px;
+
+        .carousel-nav.prev {
+          left: 0;
         }
-        
-        .clear-carousel-nav.next {
-          right: 20px;
+
+        .carousel-nav.next {
+          right: 0;
         }
-        
+
         .nav-icon {
-          width: 24px;
-          height: 24px;
+          width: 28px;
+          height: 28px;
         }
-        
-        .clear-carousel-controls {
+
+        .carousel-controls {
+          max-width: 800px;
+          margin: 30px auto 0;
+          padding: 0 20px;
+        }
+
+        .carousel-indicators {
           display: flex;
+          gap: 10px;
           justify-content: center;
-          align-items: center;
-          margin-top: 20px;
-          position: relative;
+          flex-wrap: wrap;
         }
-        
-        .clear-carousel-dots {
-          display: flex;
-          gap: 8px;
-        }
-        
-        .carousel-dot {
+
+        .carousel-indicator {
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          background-color: #d1d5db;
+          background-color: #4b5563;
           border: none;
           padding: 0;
           cursor: pointer;
           transition: all 0.3s ease;
         }
-        
-        .carousel-dot.active {
+
+        .carousel-indicator.active {
           background-color: #14b8a6;
           transform: scale(1.5);
           box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
         }
-        
-        .autoplay-toggle {
-          position: absolute;
-          right: 20px;
-          background-color: white;
-          border: none;
-          width: 40px;
-          height: 40px;
+
+        .autoplay-button {
+          width: 48px;
+          height: 48px;
           border-radius: 50%;
+          background: #1f2937;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          border: 2px solid #374151;
           cursor: pointer;
-          color: #6b7280;
+          color: #9ca3af;
           transition: all 0.3s ease;
         }
-        
-        .autoplay-toggle:hover {
+
+        .autoplay-button:hover {
           color: #14b8a6;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          transform: scale(1.05);
+          border-color: #14b8a6;
         }
-        
-        .autoplay-toggle.playing {
-          background-color: #14b8a6;
+
+        .autoplay-button.active {
+          background: #14b8a6;
           color: white;
+          border-color: #14b8a6;
         }
-        
-        .thumbnail-strip {
+
+        .thumbnails-container {
+          max-width: 900px;
+          margin: 25px auto 0;
           overflow-x: auto;
           padding: 15px 0;
           scrollbar-width: thin;
-          scrollbar-color: #14b8a6 #f3f4f6;
+          scrollbar-color: #14b8a6 #1f2937;
         }
-        
-        .thumbnail-strip::-webkit-scrollbar {
+
+        .thumbnails-container::-webkit-scrollbar {
           height: 6px;
         }
-        
-        .thumbnail-strip::-webkit-scrollbar-track {
-          background: #f3f4f6;
+
+        .thumbnails-container::-webkit-scrollbar-track {
+          background: #1f2937;
           border-radius: 10px;
         }
-        
-        .thumbnail-strip::-webkit-scrollbar-thumb {
+
+        .thumbnails-container::-webkit-scrollbar-thumb {
           background-color: #14b8a6;
           border-radius: 10px;
         }
-        
-        .thumbnail-container {
+
+        .thumbnails-track {
           display: flex;
-          gap: 10px;
-          padding: 0 10px;
-          min-width: min-content;
+          gap: 15px;
+          padding: 5px;
         }
-        
+
         .thumbnail {
-          flex: 0 0 80px;
-          height: 60px;
-          border-radius: 6px;
+          flex: 0 0 100px;
+          height: 70px;
+          border-radius: 10px;
           overflow: hidden;
+          position: relative;
           cursor: pointer;
-          opacity: 0.7;
-          border: 2px solid transparent;
           transition: all 0.3s ease;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        
-        .thumbnail.active {
-          opacity: 1;
-          border-color: #14b8a6;
-          transform: scale(1.05);
-        }
-        
-        .thumbnail:hover {
-          opacity: 0.9;
-        }
-        
+
         .thumbnail img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 0.3s ease;
         }
-        
-        /* Mobile responsive styles */
+
+        .thumbnail-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .thumbnail:hover .thumbnail-overlay {
+          opacity: 1;
+        }
+
+        .thumbnail-index {
+          color: white;
+          font-weight: bold;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .thumbnail:hover {
+          transform: translateY(-5px);
+        }
+
+        .thumbnail.active {
+          border: 3px solid #14b8a6;
+          box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+          transform: scale(1.1);
+        }
+
+        .thumbnail.active .thumbnail-overlay {
+          background: rgba(20, 184, 166, 0.3);
+          opacity: 1;
+        }
+
+        /* Additional effects and responsive adjustments */
         @media (max-width: 1024px) {
-          .clear-carousel-container {
+          .carousel-container {
+            height: 520px;
+          }
+
+          .carousel-card {
+            width: 340px;
+            height: 460px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .carousel-container {
             height: 450px;
           }
-          
-          .clear-carousel-item {
-            width: 70%;
-          }
-          
-          .clear-carousel-caption h3 {
-            font-size: 20px;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .clear-carousel-container {
+
+          .carousel-card {
+            width: 300px;
             height: 400px;
           }
-          
-          .clear-carousel-item {
-            width: 80%;
-          }
-          
-          .clear-carousel-item.prev-1 {
-            transform: translateX(-60%) translateZ(-100px) rotateY(10deg) scale(0.8);
-          }
-          
-          .clear-carousel-item.next-1 {
-            transform: translateX(60%) translateZ(-100px) rotateY(-10deg) scale(0.8);
-          }
-          
-          .clear-carousel-caption h3 {
-            font-size: 18px;
-          }
-          
-          .autoplay-toggle {
-            position: relative;
-            right: auto;
-            margin-left: 15px;
-          }
         }
-        
-        @media (max-width: 480px) {
-          .clear-carousel-container {
+
+        @media (max-width: 640px) {
+          .carousel-container {
+            height: 400px;
+          }
+
+          .carousel-card {
+            width: 260px;
             height: 350px;
           }
-          
-          .clear-carousel-item {
-            width: 90%;
+
+          .card-title {
+            font-size: 20px;
           }
-          
-          .clear-carousel-item.prev-1, 
-          .clear-carousel-item.next-1 {
-            opacity: 0.6;
+
+          .carousel-nav {
+            width: 50px;
+            height: 50px;
           }
-          
-          .clear-carousel-item.prev-2, 
-          .clear-carousel-item.next-2 {
-            opacity: 0;
+
+          .nav-icon {
+            width: 24px;
+            height: 24px;
           }
-          
-          .clear-carousel-nav {
-            width: 40px;
-            height: 40px;
+
+          .thumbnail {
+            flex: 0 0 80px;
+            height: 60px;
           }
-          
-          .clear-carousel-nav.prev {
-            left: 10px;
+        }
+
+        @media (max-width: 480px) {
+          .carousel-container {
+            height: 360px;
           }
-          
-          .clear-carousel-nav.next {
-            right: 10px;
+
+          .carousel-card {
+            width: 220px;
+            height: 300px;
           }
-          
-          .clear-carousel-caption {
+
+          .carousel-caption {
             padding: 15px;
           }
-          
-          .clear-carousel-caption h3 {
-            font-size: 16px;
+
+          .card-title {
+            font-size: 18px;
             margin-bottom: 5px;
           }
-          
-          .category-badge {
-            padding: 3px 8px;
+
+          .card-category {
             font-size: 12px;
-          }
-          
-          .thumbnail {
-            flex: 0 0 70px;
-            height: 50px;
+            padding: 4px 10px;
           }
         }
       `}</style>

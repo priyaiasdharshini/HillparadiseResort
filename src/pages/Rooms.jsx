@@ -93,36 +93,36 @@ const Rooms = () => {
                 <img src={room.image} alt={room.name} className="h-64 w-full object-cover md:h-full" />
               </div>
               <div className="md:w-3/5 p-6">
-                <div className="uppercase tracking-wide text-xs text-emerald-400 font-semibold">
+                <div className="uppercase tracking-wide text-xs text-teal-400 font-semibold">
                   {room.type}
                 </div>
-                <h3 className="mt-2 text-xl font-semibold text-amber-100">{room.name}</h3>
-                <p className="mt-2 text-amber-200">{room.description}</p>
+                <h3 className="mt-2 text-xl font-semibold text-white">{room.name}</h3>
+                <p className="mt-2 text-white">{room.description}</p>
                 
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   <div>
-                    <span className="block text-amber-300 text-sm">Size</span>
-                    <span className="font-medium text-amber-100">{room.size}</span>
+                    <span className="block text-white text-sm">Size</span>
+                    <span className="font-medium text-white">{room.size}</span>
                   </div>
                   <div>
-                    <span className="block text-amber-300 text-sm">Beds</span>
-                    <span className="font-medium text-amber-100">{room.beds}</span>
+                    <span className="block text-white text-sm">Beds</span>
+                    <span className="font-medium text-white">{room.beds}</span>
                   </div>
                   <div>
-                    <span className="block text-amber-300 text-sm">Occupancy</span>
-                    <span className="font-medium text-amber-100">{room.occupancy}</span>
+                    <span className="block text-white text-sm">Occupancy</span>
+                    <span className="font-medium text-white">{room.occupancy}</span>
                   </div>
                   <div>
-                    <span className="block text-amber-300 text-sm">Price</span>
-                    <span className="font-medium text-emerald-400">{room.price}</span>
+                    <span className="block text-white text-sm">Price</span>
+                    <span className="font-medium text-teal-400">{room.price}</span>
                   </div>
                 </div>
                 
                 <div className="mt-4">
-                  <h4 className="text-sm font-medium text-amber-100">Key Features</h4>
+                  <h4 className="text-sm font-medium text-white">Key Features</h4>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {room.features.map((feature, idx) => (
-                      <li key={idx} className="text-sm bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full">
+                      <li key={idx} className="text-sm bg-emerald-900/50 text-teal-300 px-3 py-1 rounded-full">
                         {feature}
                       </li>
                     ))}
@@ -132,7 +132,7 @@ const Rooms = () => {
                 <div className="mt-6">
                   <Link
                     to="/contact"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-amber-100 py-2 px-4 rounded transition-colors duration-300 inline-block"
+                    className="bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded transition-colors duration-300 inline-block"
                   >
                     Book Now
                   </Link>
@@ -148,40 +148,40 @@ const Rooms = () => {
           <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300 border border-emerald-700/30">
             <div className="relative">
               <img src={room.image} alt={room.name} className="w-full h-64 object-cover" />
-              <div className="absolute top-4 right-4 bg-emerald-600 text-amber-100 px-3 py-1 rounded-full text-sm">
+              <div className="absolute top-4 right-4 bg-teal-600 text-white px-3 py-1 rounded-full text-sm">
                 {room.price}
               </div>
             </div>
             <div className="p-6">
-              <div className="uppercase tracking-wide text-xs text-emerald-400 font-semibold">
+              <div className="uppercase tracking-wide text-xs text-teal-400 font-semibold">
                 {room.type}
               </div>
-              <h3 className="mt-2 text-xl font-semibold text-amber-100">{room.name}</h3>
-              <p className="mt-2 text-amber-200">{room.description}</p>
+              <h3 className="mt-2 text-xl font-semibold text-white">{room.name}</h3>
+              <p className="mt-2 text-white">{room.description}</p>
               
               <div className="mt-4 flex flex-wrap gap-4">
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                   </svg>
-                  <span className="text-amber-100">{room.size}</span>
+                  <span className="text-white">{room.size}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4M8 16H4M4 8h4m12 4h-4m0-4h4m-4 8h4M9 4v16M15 4v16" />
                   </svg>
-                  <span className="text-amber-100">{room.beds}</span>
+                  <span className="text-white">{room.beds}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
-                  <span className="text-amber-100">{room.occupancy}</span>
+                  <span className="text-white">{room.occupancy}</span>
                 </div>
               </div>
               
               <div className="mt-4">
-                <h4 className="text-sm font-medium text-amber-100">Key Features</h4>
+                <h4 className="text-sm font-medium text-white">Key Features</h4>
                 <ul className="mt-2 flex flex-wrap gap-2">
                   {room.features.slice(0, 3).map((feature, idx) => (
                     <li key={idx} className="text-sm bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full">
@@ -189,7 +189,7 @@ const Rooms = () => {
                     </li>
                   ))}
                   {room.features.length > 3 && (
-                    <li className="text-sm bg-gray-700 text-amber-200 px-3 py-1 rounded-full">
+                    <li className="text-sm bg-gray-700 text-white px-3 py-1 rounded-full">
                       +{room.features.length - 3} more
                     </li>
                   )}
@@ -199,7 +199,7 @@ const Rooms = () => {
               <div className="mt-6">
                 <Link
                   to="/contact"
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-amber-100 py-2 rounded transition-colors duration-300 inline-block text-center"
+                  className="w-full bg-teal-600 hover:bg-teal-500 text-white py-2 rounded transition-colors duration-300 inline-block text-center"
                 >
                   Book Now
                 </Link>
@@ -219,47 +219,47 @@ const Rooms = () => {
               <div className="md:w-3/5 p-6">
                 <div className="flex justify-between items-start">
                   <div>
-                    <div className="uppercase tracking-wide text-xs text-emerald-400 font-semibold">
+                    <div className="uppercase tracking-wide text-xs text-teal-400 font-semibold">
                       {room.type}
                     </div>
-                    <h3 className="mt-1 text-xl font-semibold text-amber-100">{room.name}</h3>
+                    <h3 className="mt-1 text-xl font-semibold text-white">{room.name}</h3>
                   </div>
-                  <div className="bg-emerald-600 text-amber-100 px-3 py-1 rounded-md text-sm">
+                  <div className="bg-teal-600 text-white px-3 py-1 rounded-md text-sm">
                     {room.price}
                   </div>
                 </div>
-                <p className="mt-3 text-amber-200">{room.description}</p>
+                <p className="mt-3 text-white">{room.description}</p>
                 
                 <div className="mt-4 space-y-3">
                   <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                     </svg>
-                    <span className="text-amber-100">{room.size}</span>
+                    <span className="text-white">{room.size}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4M8 16H4M4 8h4m12 4h-4m0-4h4m-4 8h4M9 4v16M15 4v16" />
                     </svg>
-                    <span className="text-amber-100">{room.beds}</span>
+                    <span className="text-white">{room.beds}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
-                    <span className="text-amber-100">{room.occupancy}</span>
+                    <span className="text-white">{room.occupancy}</span>
                   </div>
                 </div>
                 
                 <div className="mt-4">
-                  <h4 className="text-sm font-medium text-amber-100">Amenities</h4>
+                  <h4 className="text-sm font-medium text-white">Amenities</h4>
                   <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2">
                     {room.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-2">
-                        <svg className="w-4 h-4 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        <svg className="w-4 h-4 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
-                        <span className="text-sm text-amber-200">{feature}</span>
+                        <span className="text-sm text-white">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -268,7 +268,7 @@ const Rooms = () => {
                 <div className="mt-6">
                   <Link
                     to="/contact"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-amber-100 py-2 px-4 rounded transition-colors duration-300 inline-block"
+                    className="bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded transition-colors duration-300 inline-block"
                   >
                     Book Now
                   </Link>
@@ -285,35 +285,35 @@ const Rooms = () => {
             <div className="relative">
               <img src={room.image} alt={room.name} className="w-full h-80 object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex flex-col justify-end p-6">
-                <div className="text-amber-100">
-                  <div className="uppercase tracking-wide text-xs font-semibold mb-2 bg-emerald-600 inline-block px-2 py-1 rounded">
+                <div className="text-white">
+                  <div className="uppercase tracking-wide text-xs font-semibold mb-2 bg-teal-600 inline-block px-2 py-1 rounded">
                     {room.type}
                   </div>
                   <h3 className="text-2xl font-bold mb-2">{room.name}</h3>
-                  <p className="text-amber-200 mb-4">{room.description}</p>
+                  <p className="text-white mb-4">{room.description}</p>
                   
                   <div className="flex gap-4 mb-4">
                     <div>
-                      <span className="block text-amber-300 text-xs">Size</span>
+                      <span className="block text-white text-xs">Size</span>
                       <span className="font-medium">{room.size}</span>
                     </div>
                     <div>
-                      <span className="block text-amber-300 text-xs">Beds</span>
+                      <span className="block text-white text-xs">Beds</span>
                       <span className="font-medium">{room.beds}</span>
                     </div>
                     <div>
-                      <span className="block text-amber-300 text-xs">Occupancy</span>
+                      <span className="block text-white text-xs">Occupancy</span>
                       <span className="font-medium">{room.occupancy}</span>
                     </div>
                     <div className="ml-auto">
-                      <span className="block text-amber-300 text-xs">Price</span>
-                      <span className="font-medium text-emerald-400">{room.price}</span>
+                      <span className="block text-white text-xs">Price</span>
+                      <span className="font-medium text-teal-400">{room.price}</span>
                     </div>
                   </div>
                   
                   <div className="flex gap-2 flex-wrap mb-4">
                     {room.features.map((feature, idx) => (
-                      <span key={idx} className="text-xs bg-gray-900/50 backdrop-blur-sm px-2 py-1 rounded text-amber-200">
+                      <span key={idx} className="text-xs bg-gray-900/50 backdrop-blur-sm px-2 py-1 rounded text-white">
                         {feature}
                       </span>
                     ))}
@@ -321,7 +321,7 @@ const Rooms = () => {
                   
                   <Link
                     to="/contact"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-amber-100 py-2 px-4 rounded transition-colors duration-300 inline-block"
+                    className="bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded transition-colors duration-300 inline-block"
                   >
                     Book Now
                   </Link>
@@ -343,13 +343,13 @@ const Rooms = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-gray-900/70 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&auto=format&fit=crop&q=80')" }}
+          style={{ backgroundImage: "url('/src/assets/images/plant-foliage-board.jpg')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-amber-100 mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-tight">
             Accommodations
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-amber-200 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl leading-relaxed">
             Discover our luxurious rooms, suites, and villas for an unforgettable stay.
           </p>
         </div>
@@ -365,8 +365,8 @@ const Rooms = () => {
                 key={filter}
                 className={`px-6 py-2 rounded-full capitalize transition-colors duration-300 ${
                   activeFilter === filter
-                    ? 'bg-emerald-600 text-amber-100'
-                    : 'bg-gray-700 text-amber-200 hover:bg-gray-600'
+                    ? 'bg-teal-600 text-white'
+                    : 'bg-gray-700 text-white hover:bg-gray-600'
                 }`}
                 onClick={() => setActiveFilter(filter)}
               >
@@ -390,10 +390,10 @@ const Rooms = () => {
       <section className="py-12 md:py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100 mb-4 tracking-wide">
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4 tracking-wide">
               Room Amenities
             </h2>
-            <p className="text-base sm:text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
               All our accommodations include premium amenities for your comfort.
             </p>
           </div>
@@ -437,12 +437,12 @@ const Rooms = () => {
                 )
               }
             ].map((amenity, index) => (
-              <div key={index} className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-md border border-emerald-700/30">
-                <div className="text-emerald-400 mb-4">
+              <div key={index} className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-md border border-teal-700/30">
+                <div className="text-teal-400 mb-4">
                   {amenity.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-amber-100 mb-2">{amenity.title}</h3>
-                <p className="text-amber-200 text-sm">{amenity.description}</p>
+                <h3 className="text-lg font-semibold text-white mb-2">{amenity.title}</h3>
+                <p className="text-white text-sm">{amenity.description}</p>
               </div>
             ))}
           </div>
@@ -450,22 +450,22 @@ const Rooms = () => {
       </section>
       
       {/* Booking CTA */}
-      <section className="py-12 md:py-16 bg-emerald-950 text-amber-100">
+      <section className="py-12 md:py-16 bg-emerald-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-serif font-bold mb-6 tracking-wide">
             Ready to Book Your Stay?
           </h2>
-          <p className="text-base sm:text-lg text-amber-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-white mb-8 max-w-2xl mx-auto leading-relaxed">
             Experience the ultimate luxury getaway. Book your accommodation today for the best rates and availability.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               to="/contact"
-              className="bg-amber-100 text-emerald-800 hover:bg-amber-200 px-6 py-3 rounded-md font-medium transition-colors duration-300 inline-block"
+              className="bg-white text-teal-800 hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors duration-300 inline-block"
             >
               Book Now
             </Link>
-            <button className="border border-amber-300 text-amber-100 hover:bg-emerald-900 px-6 py-3 rounded-md font-medium transition-colors duration-300">
+            <button className="border border-white text-white hover:bg-teal-900 px-6 py-3 rounded-md font-medium transition-colors duration-300">
               View Special Offers
             </button>
           </div>
@@ -476,10 +476,10 @@ const Rooms = () => {
       <section className="py-12 md:py-16 bg-gradient-to-b from-emerald-950 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100 mb-4 tracking-wide">
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4 tracking-wide">
               Guest Experiences
             </h2>
-            <p className="text-base sm:text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
               Hear what our guests have to say about their stay with us.
             </p>
           </div>
@@ -508,22 +508,22 @@ const Rooms = () => {
               <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-md border border-emerald-700/30">
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <p className="text-amber-200 italic mb-4">"{testimonial.quote}"</p>
+                <p className="text-white italic mb-4">"{testimonial.quote}"</p>
                 <div>
-                  <p className="font-semibold text-amber-100">{testimonial.name}</p>
-                  <p className="text-sm text-amber-300">{testimonial.location}</p>
+                  <p className="font-semibold text-white">{testimonial.name}</p>
+                  <p className="text-sm text-gray-300">{testimonial.location}</p>
                 </div>
               </div>
             ))}
           </div>
           
           <div className="text-center mt-10">
-            <Link to="/reviews" className="text-emerald-400 hover:text-emerald-300 font-medium inline-flex items-center">
+            <Link to="/reviews" className="text-teal-400 hover:text-teal-300 font-medium inline-flex items-center">
               Read more guest reviews
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -537,10 +537,10 @@ const Rooms = () => {
       <section className="py-12 md:py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100 mb-4 tracking-wide">
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4 tracking-wide">
               Frequently Asked Questions
             </h2>
-            <p className="text-base sm:text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
               Find answers to common questions about our accommodations.
             </p>
           </div>
@@ -569,20 +569,20 @@ const Rooms = () => {
               }
             ].map((faq, index) => (
               <div key={index} className="py-6">
-                <h3 className="text-lg font-semibold text-amber-100 mb-2">{faq.question}</h3>
-                <p className="text-amber-200">{faq.answer}</p>
+                <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
+                <p className="text-white">{faq.answer}</p>
               </div>
             ))}
           </div>
           
           <div className="text-center mt-10">
-            <p className="text-amber-200">
+            <p className="text-white">
               Have more questions? Contact our concierge at{' '}
-              <a href="mailto:concierge@luxuryresort.com" className="text-emerald-400 hover:text-emerald-300 font-medium">
+              <a href="mailto:concierge@luxuryresort.com" className="text-teal-400 hover:text-teal-300 font-medium">
                 concierge@luxuryresort.com
               </a>{' '}
               or call{' '}
-              <a href="tel:+18001234567" className="text-emerald-400 hover:text-emerald-300 font-medium">
+              <a href="tel:+18001234567" className="text-teal-400 hover:text-teal-300 font-medium">
                 +1 (800) 123-4567
               </a>.
             </p>

@@ -2,26 +2,26 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="bg-gray-900 text-amber-100">
+    <div className="bg-gray-900 text-white">
       {/* Hero Section */}
       <div className="relative pt-24 pb-12 md:pt-32 md:pb-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-gray-900/70 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-950/80 to-gray-900/70 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/image6.avif')" }}
+          style={{ backgroundImage: "url('/src/assets/images/plant-foliage-board.jpg')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-amber-100 mb-4 tracking-tight drop-shadow-lg animate-slide-in-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight drop-shadow-lg animate-slide-in-left">
             About Hill Paradise Resort
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-amber-200 max-w-3xl mx-auto md:mx-0 leading-relaxed animate-slide-in-right delay-200">
+          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl mx-auto md:mx-0 leading-relaxed animate-slide-in-right delay-200">
             Uncover our legacy, values, and dedication to nature-inspired luxury.
           </p>
         </div>
       </div>
       
       {/* Our Story */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-900 to-emerald-950">
+      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-900 to-teal-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center md:gap-12">
             <div className="md:w-1/2 mb-8 md:mb-0">
@@ -32,15 +32,15 @@ const About = () => {
               />
             </div>
             <div className="md:w-1/2">
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-amber-100 mb-6 tracking-wide">Our Story</h2>
-              <p className="text-base sm:text-lg text-amber-200 mb-4 leading-relaxed">
-                Established in 1985, Hill Paradise Resort began as a humble retreat with 10 rooms, rooted in a vision to blend luxury with nature’s embrace.
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-6 tracking-wide">Our Story</h2>
+              <p className="text-base sm:text-lg text-white mb-4 leading-relaxed">
+                Established in 1985, Hill Paradise Resort began as a humble retreat with 10 rooms, rooted in a vision to blend luxury with nature's embrace.
               </p>
-              <p className="text-base sm:text-lg text-amber-200 mb-4 leading-relaxed">
-                Over the years, we’ve evolved into a globally celebrated eco-luxury destination, staying true to our commitment to sustainable practices and authentic experiences.
+              <p className="text-base sm:text-lg text-white mb-4 leading-relaxed">
+                Over the years, we've evolved into a globally celebrated eco-luxury destination, staying true to our commitment to sustainable practices and authentic experiences.
               </p>
-              <p className="text-base sm:text-lg text-amber-200 leading-relaxed">
-                Now boasting 120 rooms, three farm-to-table restaurants, and a serene spa, our resort offers an unparalleled escape into nature’s splendor.
+              <p className="text-base sm:text-lg text-white leading-relaxed">
+                Now boasting 120 rooms, three farm-to-table restaurants, and a serene spa, our resort offers an unparalleled escape into nature's splendor.
               </p>
             </div>
           </div>
@@ -51,8 +51,8 @@ const About = () => {
       <section className="py-12 md:py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-amber-100 mb-4 tracking-wide">Our Core Values</h2>
-            <p className="text-base sm:text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4 tracking-wide">Our Core Values</h2>
+            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
               The principles that define our commitment to nature and hospitality.
             </p>
           </div>
@@ -87,12 +87,12 @@ const About = () => {
                 )
               }
             ].map((value, index) => (
-              <div key={index} className="bg-emerald-900/50 p-6 rounded-xl shadow-lg border border-emerald-700/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-emerald-500/20">
-                <div className="text-emerald-400 mb-4 flex justify-center transform transition-transform duration-300 hover:scale-110">
+              <div key={index} className="bg-teal-900/50 p-6 rounded-xl shadow-lg border border-teal-700/30 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-teal-500/20">
+                <div className="text-teal-400 mb-4 flex justify-center transform transition-transform duration-300 hover:scale-110">
                   {value.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-center text-amber-100 mb-4">{value.title}</h3>
-                <p className="text-sm sm:text-base text-amber-200 text-center leading-relaxed">{value.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-center text-white mb-4">{value.title}</h3>
+                <p className="text-sm sm:text-base text-white text-center leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -103,8 +103,8 @@ const About = () => {
       <section className="py-12 md:py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-amber-100 mb-4 tracking-wide">Resort Activity Map</h2>
-            <p className="text-base sm:text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4 tracking-wide">Resort Activity Map</h2>
+            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
               Explore the adventures awaiting you at Hill Paradise Resort.
             </p>
           </div>
@@ -278,11 +278,11 @@ const About = () => {
       </section>
       
       {/* Awards Section */}
-      <section className="py-12 md:py-16 bg-emerald-950">
+      <section className="py-12 md:py-16 bg-teal-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-amber-100 mb-4 tracking-wide">Awards & Recognition</h2>
-            <p className="text-base sm:text-lg text-amber-200 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4 tracking-wide">Awards & Recognition</h2>
+            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
               Honored by industry leaders for our dedication to excellence.
             </p>
           </div>
@@ -294,13 +294,13 @@ const About = () => {
               "Sustainable Tourism Excellence Award",
               "Top 10 Beachfront Resorts - Luxury Travel Magazine"
             ].map((award, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg border border-emerald-700/30 flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-emerald-500/20">
-                <div className="text-emerald-400 mb-4">
+              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg border border-teal-700/30 flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-teal-500/20">
+                <div className="text-teal-400 mb-4">
                   <svg className="w-10 h-10 sm:w-12 sm:h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                   </svg>
                 </div>
-                <p className="text-sm sm:text-base text-center font-medium text-amber-200">{award}</p>
+                <p className="text-sm sm:text-base text-center font-medium text-white">{award}</p>
               </div>
             ))}
           </div>

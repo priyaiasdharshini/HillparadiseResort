@@ -131,7 +131,7 @@ const Activities = () => {
       <div className="relative pt-32 pb-16 md:pb-32">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-teal-900/70 to-gray-900/90 z-10" />
         <img 
-          src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&h=600&q=80"
+          src="/src/assets/images/plant-foliage-board.jpg"
           alt="Adventure background"
           className="absolute inset-0 w-full h-full object-cover"
         />
