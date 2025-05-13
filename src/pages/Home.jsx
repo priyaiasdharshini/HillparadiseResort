@@ -38,19 +38,19 @@ const EnhancedHero = () => {
   const heroSlides = [
     {
       image:
-        'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+        '/src/assets/images/rooms1.JPG',
       title: 'Discover Hill Paradise',
       subtitle: 'Where luxury meets natural beauty',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+        '/src/assets/images/rooms2.JPG',
       title: 'Unforgettable Experiences',
       subtitle: 'Create memories that last a lifetime',
     },
     {
       image:
-        'https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80',
+        '/src/assets/images/rooms3.JPG',
       title: 'Exclusive Retreat At Hill Paradise',
       subtitle: 'Your private sanctuary awaits',
     },
@@ -274,7 +274,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-tight">
-              Why Paradise Resort Stands Out
+              Why Hill Paradise Resort Stands Out
             </h2>
             <p className="text-xl text-teal-200 max-w-3xl mx-auto leading-relaxed">
               Unmatched luxury and exceptional service await you in our tropical haven.
@@ -362,21 +362,21 @@ const Home = () => {
                 description: 'Elegant room with mesmerizing ocean vistas and premium comforts.',
                 price: 'From $299 per night',
                 image:
-                  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+                  '/src/assets/images/rooms1.JPG',
               },
               {
                 name: 'Garden Suite',
                 description: 'A serene retreat surrounded by lush tropical gardens.',
                 price: 'From $399 per night',
                 image:
-                  'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+                  '/src/assets/images/rooms2.JPG',
               },
               {
                 name: 'Presidential Villa',
                 description: 'Unparalleled luxury with a private pool and sweeping views.',
                 price: 'From $899 per night',
                 image:
-                  'https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80',
+                  '/src/assets/images/rooms3.JPG',
               },
             ].map((room, index) => (
               <div
@@ -489,7 +489,7 @@ const Home = () => {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <img
-                  src="https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                  src="/src/assets/images/IMG_5793.JPG"
                   alt="Resort view"
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                 />

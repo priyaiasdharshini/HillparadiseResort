@@ -18,15 +18,15 @@ const Gallery = () => {
     { src: '/src/assets/images/image6.avif', category: 'rooms', title: 'Deluxe Ocean View Room' },
     { src: '/src/assets/images/image5.avif', category: 'rooms', title: 'Presidential Suite' },
     { src: '/src/assets/images/image4.avif', category: 'dining', title: 'Oceanfront Restaurant' },
-    { src: '/src/assets/images/image3.avif', category: 'dining', title: 'Sunset Bar' },
-    { src: '/src/assets/images/image6.avif', category: 'amenities', title: 'Infinity Pool' },
-    { src: '/src/assets/images/image5.avif', category: 'amenities', title: 'Luxury Spa' },
-    { src: '/src/assets/images/image4.avif', category: 'experiences', title: 'Beach Yoga' },
-    { src: '/src/assets/images/image3.avif', category: 'experiences', title: 'Scuba Diving' },
-    { src: '/src/assets/images/image4.avif', category: 'rooms', title: 'Garden Suite' },
-    { src: '/src/assets/images/image5.avif', category: 'amenities', title: 'Fitness Center' },
-    { src: '/src/assets/images/image6.avif', category: 'dining', title: 'Fine Dining Experience' },
-    { src: '/src/assets/images/image3.avif', category: 'experiences', title: 'Sunset Cruise' }
+    { src: '/src/assets/images/IMG_5783.JPG', category: 'dining', title: 'Sunset Bar' },
+    { src: '/src/assets/images/IMG_5799.JPG', category: 'amenities', title: 'Infinity Pool' },
+    { src: '/src/assets/images/IMG_5784.JPG', category: 'amenities', title: 'Luxury Spa' },
+    { src: '/src/assets/images/IMG_5789.JPG', category: 'experiences', title: 'Beach Yoga' },
+    { src: '/src/assets/images/IMG_5793.JPG', category: 'experiences', title: 'Scuba Diving' },
+    { src: '/src/assets/images/IMG_5799.JPG', category: 'rooms', title: 'Garden Suite' },
+    { src: '/src/assets/images/rooms3.JPG', category: 'amenities', title: 'Fitness Center' },
+    { src: '/src/assets/images/rooms2.JPG', category: 'dining', title: 'Fine Dining Experience' },
+    { src: '/src/assets/images/rooms1.JPG', category: 'experiences', title: 'Sunset Cruise' }
   ];
 
   const filteredImages = activeCategory === 'all' 

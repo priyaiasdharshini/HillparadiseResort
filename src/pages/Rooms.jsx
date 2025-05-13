@@ -16,7 +16,7 @@ const Rooms = () => {
       beds: '1 King or 2 Queen',
       occupancy: 'Up to 2 adults',
       features: ['Ocean view', 'Private balcony', 'Luxury bathroom', 'Mini bar'],
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&auto=format&fit=crop&q=60'
+      image: '/src/assets/images/rooms1.JPG'
     },
     {
       name: 'Garden Suite',
@@ -27,7 +27,7 @@ const Rooms = () => {
       beds: '1 King',
       occupancy: 'Up to 2 adults',
       features: ['Garden view', 'Separate living area', 'Outdoor shower', 'Butler service'],
-      image: 'https://images.unsplash.com/photo-1587985064135-0366536eab42?w=800&auto=format&fit=crop&q=60'
+      image: '/src/assets/images/rooms2.JPG'
     },
     {
       name: 'Presidential Villa',
@@ -38,7 +38,7 @@ const Rooms = () => {
       beds: '1 King',
       occupancy: 'Up to 2 adults',
       features: ['Private pool', 'Ocean view', 'Full kitchen', '24/7 butler service'],
-      image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&auto=format&fit=crop&q=60'
+      image: '/src/assets/images/rooms3.JPG'
     },
     {
       name: 'Family Suite',
@@ -404,7 +404,7 @@ const Rooms = () => {
                 title: "Premium Bedding",
                 description: "Luxury linens, plush pillows and premium mattresses for the perfect night's sleep.",
                 icon: (
-                  <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8" xmlns="/src/assets/images/rooms1.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4M8 16H4M4 8h4m12 4h-4m0-4h4m-4 8h4M9 4v16M15 4v16" />
                   </svg>
                 )
@@ -413,7 +413,7 @@ const Rooms = () => {
                 title: "High-Speed WiFi",
                 description: "Complimentary high-speed internet access throughout the resort.",
                 icon: (
-                  <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8" xmlns="/src/assets/images/rooms2.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
                   </svg>
                 )
@@ -422,7 +422,7 @@ const Rooms = () => {
                 title: "24/7 Room Service",
                 description: "Gourmet dining available in the comfort of your room, any time day or night.",
                 icon: (
-                  <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8" xmlns="/src/assets/images/rooms3.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 )
@@ -431,7 +431,7 @@ const Rooms = () => {
                 title: "Daily Housekeeping",
                 description: "Impeccable service and attention to detail for a pristine environment.",
                 icon: (
-                  <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8" xmlns="/src/assets/images/IMG_5799.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 )
