@@ -15,9 +15,9 @@ const Gallery = () => {
   const categories = ['all', 'rooms', 'dining', 'amenities', 'experiences'];
 
   const images = [
-    { src: '/src/assets/images/image6.avif', category: 'rooms', title: 'Deluxe Ocean View Room' },
-    { src: '/src/assets/images/image5.avif', category: 'rooms', title: 'Presidential Suite' },
-    { src: '/src/assets/images/image4.avif', category: 'dining', title: 'Oceanfront Restaurant' },
+    { src: '/src/assets/images/IMG_5796.JPG', category: 'rooms', title: 'Deluxe Ocean View Room' },
+    { src: '/src/assets/images/IMG_5799.JPG', category: 'rooms', title: 'Presidential Suite' },
+    { src: '/src/assets/images/IMG_5799.JPG', category: 'dining', title: 'Oceanfront Restaurant' },
     { src: '/src/assets/images/IMG_5783.JPG', category: 'dining', title: 'Sunset Bar' },
     { src: '/src/assets/images/IMG_5799.JPG', category: 'amenities', title: 'Infinity Pool' },
     { src: '/src/assets/images/IMG_5784.JPG', category: 'amenities', title: 'Luxury Spa' },
