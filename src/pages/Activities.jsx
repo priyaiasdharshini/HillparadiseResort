@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const ActivityCard = ({ title, description, image, price, isActive }) => (
+const PackageCard = ({ title, description, image, isActive }) => (
   <div className={`relative rounded-xl overflow-hidden transition-all duration-500 ${isActive ? 'scale-105 z-10' : 'scale-95 opacity-80'}`}>
     <img 
       src={image} 
@@ -10,90 +10,57 @@ const ActivityCard = ({ title, description, image, price, isActive }) => (
     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
       <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
       <p className="text-gray-300 mb-3">{description}</p>
-      {price && <p className="text-teal-400 font-medium mb-4">{price}</p>}
       <button className="self-start bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
-        Learn More
+        View Details
       </button>
     </div>
   </div>
 );
 
-const Activities = () => {
-  const [activeCategory, setActiveCategory] = useState(0);
+const PackagePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
   const carouselRef = useRef(null);
   
-  const categories = [
+  const packageItems = [
     {
-      title: "Adventure Activities",
-      activities: [
-        {
-          title: "Jeep Safari",
-          description: "Explore rugged terrain and hidden gems of the island on our thrilling 4x4 jungle adventures.",
-          price: "From $95 per person",
-          image: "https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-        },
-        {
-          title: "Private Waterfalls Tour",
-          description: "Discover secluded waterfalls with private swimming holes accessible only with our expert guides.",
-          price: "From $110 per person",
-          image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-        },
-        {
-          title: "Scuba Diving",
-          description: "Explore vibrant coral reefs and underwater marine life with our certified diving instructors.",
-          price: "From $120 per person",
-          image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-        }
-      ]
+      title: "Mud House Stay",
+      description: "Experience authentic rural living in our traditional mud houses with modern comforts.",
+      image: "/src/assets/images/mudhouse2.jpeg"
     },
     {
-      title: "Nature & Camping",
-      activities: [
-        {
-          title: "Beach Camping",
-          description: "Sleep under the stars on our private beach with luxury tent setups and campfire dining.",
-          price: "From $150 per night",
-          image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-        },
-        {
-          title: "Jungle Tenting",
-          description: "Experience the rainforest canopy in our elevated tree tents with full amenities.",
-          price: "From $180 per night",
-          image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-        },
-        {
-          title: "Sunset Campfire",
-          description: "Private beach bonfire with gourmet s'mores and cocktails under the stars.",
-          price: "From $75 per couple",
-          image: "https://images.unsplash.com/photo-1517825738774-7de9363ef735?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-        }
-      ]
+      title: "Off-Road Jeep Safari",
+      description: "2km thrilling adventure through rugged terrain and breathtaking landscapes.",
+      image: "/src/assets/images/ofroadjeefsafari.jpeg"
     },
     {
-      title: "Water Activities",
-      activities: [
-        {
-          title: "Private Waterfall",
-          description: "Cruise along the coast and enjoy breathtaking sunset views aboard our luxury catamaran.",
-          price: "From $85 per person",
-          image: "/src/assets/images/waterfall.jpg"
-        },
-        {
-          title: "Fire camping",
-          description: "Discover the underwater world with guided snorkeling tours to the best spots around the resort.",
-          price: "From $60 per person",
-          image: "/src/assets/images/firecamp.jpg"
-        },
-        {
-          title: "Dj Music",
-          description: "Exclusive access to a hidden waterfall with gourmet picnic setup and champagne.",
-          price: "From $220 per couple",
-          image: "/src/assets/images/dj.jpg"
-        }
-      ]
+      title: "View Point Trekking",
+      description: "Guided trek to panoramic viewpoints with spectacular scenery.",
+      image: "/src/assets/images/trekking.jpeg"
+    },
+      {
+      title: "Sliding Water Falls",
+      description: "Perfect for scenic views and thrilling slides, they’re often found in lush, eroded landscapes.",
+      image: "/src/assets/images/guestatwaterfall.jpeg"
+    },
+         {
+      title: "Fire Camp",
+      description: "The Fire Camp at Hill Paradise offers a thrilling evening under the stars with cozy campfires and guided nature activities.",
+      image: "/src/assets/images/firecamp.jpeg"
     }
+  ];
+
+  const packageDetails = [
+    { time: "2:00 PM", activity: "Check In" },
+    { time: "3:00 PM", activity: "Welcome Drink" },
+    { time: "4:00 PM", activity: "Sliding Waterfalls Visit" },
+    { time: "8:00 PM", activity: "Night Dinner (Non-VEG)" },
+    { time: "8:00-10:00 PM", activity: "Camp Fire" },
+    { time: "Overnight", activity: "Mud-House Stay" },
+    { time: "8:00 AM", activity: "Morning Breakfast" },
+    { time: "9:00 AM", activity: "View Point Trekking" },
+    { time: "10:00 AM", activity: "Off-Road Jeep Safari (2 Kms)" },
+    { time: "11:00 AM", activity: "Check Out" }
   ];
 
   // Auto-rotate carousel
@@ -102,16 +69,16 @@ const Activities = () => {
     
     const interval = setInterval(() => {
       setCurrentIndex(prev => 
-        prev === categories[activeCategory].activities.length - 1 ? 0 : prev + 1
+        prev === packageItems.length - 1 ? 0 : prev + 1
       );
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [activeCategory, isAutoRotating]);
+  }, [isAutoRotating]);
 
   const nextSlide = () => {
     setCurrentIndex(prev => 
-      prev === categories[activeCategory].activities.length - 1 ? 0 : prev + 1
+      prev === packageItems.length - 1 ? 0 : prev + 1
     );
     setIsAutoRotating(false);
     setTimeout(() => setIsAutoRotating(true), 10000);
@@ -119,7 +86,7 @@ const Activities = () => {
 
   const prevSlide = () => {
     setCurrentIndex(prev => 
-      prev === 0 ? categories[activeCategory].activities.length - 1 : prev - 1
+      prev === 0 ? packageItems.length - 1 : prev - 1
     );
     setIsAutoRotating(false);
     setTimeout(() => setIsAutoRotating(true), 10000);
@@ -128,42 +95,23 @@ const Activities = () => {
   return (
     <div className="bg-gray-900 text-white">
       {/* Hero Section */}
-      <div className="relative pt-32 pb-16 md:pb-32">
+      <div className="relative pt-32 pb-16 md:pb-24">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-teal-900/70 to-gray-900/90 z-10" />
         <img 
-          src="/src/assets/images/plant-foliage-board.jpg"
+          src="\src\assets\images\IMG_5799.JPG"
           alt="Adventure background"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
-            Adventure & Nature Experiences
+            Nature Adventure Package
           </h1>
-          <p className="text-xl text-teal-100 max-w-3xl">
-            From thrilling safaris to serene waterfalls and magical campfire nights under the stars.
+          <div className="bg-teal-600/90 inline-block px-6 py-2 rounded-full text-xl font-medium mb-6">
+            Only ₹1500/- per person
+          </div>
+          <p className="text-xl text-teal-100 max-w-3xl mx-auto">
+            Experience the perfect blend of adventure and relaxation in the heart of Idukki's wilderness
           </p>
-        </div>
-      </div>
-      
-      {/* Category Selector */}
-      <div className="flex justify-center py-8 bg-gray-800">
-        <div className="inline-flex rounded-full bg-gray-700 p-1">
-          {categories.map((category, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setActiveCategory(index);
-                setCurrentIndex(0);
-              }}
-              className={`px-6 py-2 rounded-full capitalize transition-all duration-300 ${
-                activeCategory === index
-                  ? 'bg-teal-600 text-white shadow-lg'
-                  : 'text-gray-300 hover:text-white'
-              }`}
-            >
-              {category.title}
-            </button>
-          ))}
         </div>
       </div>
       
@@ -172,7 +120,7 @@ const Activities = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-serif font-bold text-white mb-4">
-              {categories[activeCategory].title}
+              Package Highlights
             </h2>
             <div className="w-24 h-1 bg-teal-600 mx-auto"></div>
           </div>
@@ -202,10 +150,10 @@ const Activities = () => {
               ref={carouselRef}
               className="relative w-full h-full flex items-center justify-center"
             >
-              {categories[activeCategory].activities.map((activity, index) => {        
+              {packageItems.map((item, index) => {        
                 const isActive = index === currentIndex;
-                const isNext = index === (currentIndex + 1) % categories[activeCategory].activities.length;
-                const isPrev = index === (currentIndex - 1 + categories[activeCategory].activities.length) % categories[activeCategory].activities.length;
+                const isNext = index === (currentIndex + 1) % packageItems.length;
+                const isPrev = index === (currentIndex - 1 + packageItems.length) % packageItems.length;
                 
                 let transform = '';
                 let zIndex = 0;
@@ -238,8 +186,8 @@ const Activities = () => {
                       opacity: opacity
                     }}
                   >
-                    <ActivityCard 
-                      {...activity} 
+                    <PackageCard 
+                      {...item} 
                       isActive={isActive}
                     />
                   </div>
@@ -249,7 +197,7 @@ const Activities = () => {
             
             {/* Indicators */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-              {categories[activeCategory].activities.map((_, index) => (
+              {packageItems.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => {
@@ -267,107 +215,164 @@ const Activities = () => {
         </div>
       </section>
       
-      {/* Premium Experiences */}
+      {/* Package Itinerary
       <section className="py-16 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold text-white mb-4">Premium Adventure Packages</h2>
+            <h2 className="text-3xl font-serif font-bold text-white mb-4">Package Itinerary</h2>
             <p className="text-xl text-teal-200 max-w-3xl mx-auto">
-              Our most exclusive nature and adventure experiences
+              Your adventure schedule from check-in to check-out
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Safari & Waterfalls Combo",
-                description: "Full-day adventure combining our famous Jeep Safari with access to private waterfalls and swimming holes. Includes gourmet jungle picnic.",
-                price: "From $350 per person",
-                image: "https://images.unsplash.com/photo-1591703291603-2150887a3db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-              },
-              {
-                title: "Luxury Camping Experience",
-                description: "Overnight in our premium safari tents with private beach campfire, stargazing guide, and sunrise breakfast.",
-                price: "From $650 per couple",
-                image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=600&q=80"
-              }
-            ].map((experience, index) => (
-              <div 
-                key={index} 
-                className="bg-gray-700 rounded-xl overflow-hidden shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="md:flex h-full">
-                  <div className="md:w-1/2 relative">
-                    <img 
-                      src={experience.image} 
-                      alt={experience.title} 
-                      className="h-64 w-full object-cover md:h-full brightness-75 hover:brightness-90 transition duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-transparent"></div>
-                  </div>
-                  <div className="md:w-1/2 p-6 flex flex-col justify-between">
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2">{experience.title}</h3>
-                      <p className="text-gray-300 mb-4">{experience.description}</p>
-                      <p className="text-teal-400 font-medium mb-4">{experience.price}</p>
-                    </div>
-                    <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 self-start">
-                      Book This Experience
-                    </button>
+          <div className="bg-gray-700 rounded-xl shadow-2xl overflow-hidden max-w-4xl mx-auto">
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead>
+                  <tr>
+                    <th className="py-4 px-6 bg-teal-700 text-white text-left font-bold">Time</th>
+                    <th className="py-4 px-6 bg-teal-700 text-white text-left font-bold">Activity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {packageDetails.map((item, index) => (
+                    <tr key={index} className={index % 2 === 0 ? 'bg-gray-700' : 'bg-gray-800'}>
+                      <td className="py-3 px-6 text-teal-400 font-medium">{item.time}</td>
+                      <td className="py-3 px-6 text-white">{item.activity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section> */}
+      {/* Package Itinerary - Roadmap Style */}
+<section className="py-16 bg-gray-800">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-serif font-bold text-white mb-4">Package Itinerary</h2>
+      <p className="text-xl text-teal-200 max-w-3xl mx-auto">
+        Your adventure schedule from check-in to check-out
+      </p>
+    </div>
+    
+    <div className="bg-gray-700/50 rounded-xl shadow-2xl overflow-hidden max-w-4xl mx-auto p-6 md:p-8">
+      <div className="text-center mb-6">
+        <h3 className="text-2xl font-bold text-teal-400 mb-2">ADVENTURE ACTIVITY MAP</h3>
+        <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full transition-all duration-300 inline-flex items-center">
+          Join here
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+      
+      <div className="border-l-4 border-teal-500 pl-6 ml-4 py-4 space-y-8">
+        <div>
+          <h4 className="text-lg font-bold text-white mb-3">ACTIVITY SCHEDULE</h4>
+          <div className="space-y-4">
+            {packageDetails.map((item, index) => (
+              <div key={index} className="relative">
+                <div className="absolute -left-9 top-1 w-6 h-6 rounded-full bg-teal-500 border-4 border-gray-800 flex items-center justify-center text-white font-bold">
+                  {index + 1}
+                </div>
+                <div className="bg-gray-800 rounded-lg p-4 shadow-md">
+                  <div className="flex justify-between items-start">
+                    <div className="text-teal-400 font-medium">{item.time}</div>
+                    <div className="text-white ml-4">{item.activity}</div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+        
+       
+        <div className="pt-4">
+          <div className="bg-gray-800 rounded-lg p-4 shadow-md flex items-center">
+            <div className="bg-teal-500 rounded-full p-2 mr-3">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-white">CARRY!</h4>
+              <p className="text-gray-300">Remember to bring comfortable shoes, water bottles, and cameras.</p>
+            </div>
+          </div>
+        </div>
+      </div>
       
-      {/* Activity Calendar */}
+      <div className="mt-6 text-center">
+        <span className="inline-block bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">NEW!</span>
+      </div>
+    </div>
+  </div>
+</section>
+      
+      {/* Booking Section */}
       <section className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold text-white mb-4">Weekly Adventure Schedule</h2>
-            <p className="text-xl text-teal-200 max-w-3xl mx-auto">
-              Plan your adventure itinerary with our regular activities
-            </p>
-          </div>
-          
           <div className="bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="min-w-full">
-                <thead>
-                  <tr>
-                    <th className="py-4 px-6 bg-teal-700 text-white text-left font-bold">Time</th>
-                    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day) => (
-                      <th key={day} className="py-4 px-6 bg-teal-700 text-white text-center font-bold">
-                        {day}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { time: '7:00 AM', activities: ['Morning Safari', 'Waterfall Hike', 'Morning Safari', 'Jungle Trek', 'Morning Safari', 'Waterfall Hike', 'Nature Walk'] },
-                    { time: '2:00 PM', activities: ['Camp Setup Demo', 'Afternoon Safari', 'Survival Skills', 'Afternoon Safari', 'Wildlife Spotting', 'Afternoon Safari', 'Photography Walk'] },
-                    { time: '7:00 PM', activities: ['Beach Campfire', 'Jungle Night Walk', 'Stargazing', 'Beach Campfire', 'Night Safari', 'Beach Campfire', 'Bonfire Stories'] }
-                  ].map((row, rowIndex) => (
-                    <tr key={row.time} className={rowIndex % 2 === 0 ? 'bg-gray-700' : 'bg-gray-800'}>
-                      <td className="py-3 px-6 text-teal-400 font-medium">{row.time}</td>
-                      {row.activities.map((activity, colIndex) => (
-                        <td 
-                          key={colIndex} 
-                          className={`py-3 px-6 text-center ${colIndex % 2 === 0 ? 'text-white' : 'text-teal-300'}`}
-                        >
-                          {activity}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="p-4 bg-gray-900 text-center text-sm text-gray-400">
-              * Adventure activities require advance booking. Minimum age requirements may apply for some activities.
+            <div className="md:flex">
+              <div className="md:w-1/2 bg-teal-700 p-8 md:p-12 flex flex-col justify-center">
+                <h2 className="text-3xl font-serif font-bold text-white mb-4">Ready for Adventure?</h2>
+                <p className="text-xl text-teal-100 mb-6">
+                  Book your Nature Adventure Package today and experience the best of Idukki's wilderness.
+                </p>
+                <div className="text-4xl font-bold text-white mb-6">₹1500/- per person</div>
+                <div className="space-y-2 text-teal-100">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Includes all activities listed
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Non-vegetarian dinner included
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Morning breakfast provided
+                  </div>
+                </div>
+              </div>
+              <div className="md:w-1/2 p-8 md:p-12">
+                <h3 className="text-2xl font-bold text-white mb-6">Contact for Booking</h3>
+                <div className="space-y-4 text-lg">
+                  <div className="flex items-center">
+                    <svg className="w-6 h-6 text-teal-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span className="text-white">8848356964</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-6 h-6 text-teal-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <span className="text-white">9446449526</span>
+                  </div>
+                  <div className="flex items-start">
+                    <svg className="w-6 h-6 text-teal-400 mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-white">
+                      No 841, Oilavayal, Keezhanthoor,<br />
+                      Kanthallur, Idukki-685620
+                    </span>
+                  </div>
+                </div>
+                <button className="mt-8 w-full bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 text-lg font-medium">
+                  WhatsApp Now
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -376,4 +381,4 @@ const Activities = () => {
   );
 };
 
-export default Activities;
+export default PackagePage;

@@ -358,23 +358,23 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: 'Deluxe Ocean View',
-                description: 'Elegant room with mesmerizing ocean vistas and premium comforts.',
-                price: 'From $299 per night',
+                name: 'Clay Haven',
+                description: 'Elegant Mudhouse with mesmerizing Nature vistas and premium comforts.',
+                price: 'From 1500 per night',
                 image:
                   '/src/assets/images/rooms1.JPG',
               },
               {
-                name: 'Garden Suite',
+                name: 'Mudhouse Paradise',
                 description: 'A serene retreat surrounded by lush tropical gardens.',
-                price: 'From $399 per night',
+                price: 'From 1500 per night',
                 image:
                   '/src/assets/images/rooms2.JPG',
               },
               {
                 name: 'Presidential Villa',
-                description: 'Unparalleled luxury with a private pool and sweeping views.',
-                price: 'From $899 per night',
+                description: 'Unparalleled nature with a private WaterFall and sweeping views.',
+                price: 'From 1500 per night',
                 image:
                   '/src/assets/images/rooms3.JPG',
               },

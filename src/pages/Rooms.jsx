@@ -4,74 +4,50 @@ import { Link } from 'react-router-dom';
 const Rooms = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   
-  const filters = ['all', 'rooms', 'suites', 'villas'];
+  const filters = ['all', 'mudhouse', 'rooms', 'tree house'];
   
   const accommodations = [
     {
-      name: 'Deluxe Ocean View Room',
-      type: 'rooms',
-      description: 'Spacious room with stunning ocean views and premium amenities.',
-      price: 'From $299 per night',
-      size: '45 sq m',
-      beds: '1 King or 2 Queen',
-      occupancy: 'Up to 2 adults',
-      features: ['Ocean view', 'Private balcony', 'Luxury bathroom', 'Mini bar'],
+      name: 'Mudhouse - Clay Haven',
+      type: 'mudhouse',
+      description: 'Reflects the natural, grounding feel of mud architecture, offering an authentic, eco-conscious stay immersed in the serene beauty of the hills.',
+      features: ['Nature view', 'Private balcony', 'Mudhouse', 'Sunset'],
       image: '/src/assets/images/rooms1.JPG'
     },
     {
-      name: 'Garden Suite',
-      type: 'suites',
+      name: 'Mudhouse - Earth Nest',
+      type: 'mudhouse',
       description: 'Immerse yourself in nature with our peaceful garden suite retreat.',
-      price: 'From $399 per night',
-      size: '65 sq m',
-      beds: '1 King',
-      occupancy: 'Up to 2 adults',
-      features: ['Garden view', 'Separate living area', 'Outdoor shower', 'Butler service'],
+      features: ['Garden view', 'Peaceful living area', 'Mango Tree Treat', 'Nature Treat'],
       image: '/src/assets/images/rooms2.JPG'
     },
     {
       name: 'Presidential Villa',
-      type: 'villas',
+      type: 'rooms',
       description: 'The ultimate luxury experience with private pool and panoramic views.',
-      price: 'From $899 per night',
-      size: '120 sq m',
-      beds: '1 King',
-      occupancy: 'Up to 2 adults',
-      features: ['Private pool', 'Ocean view', 'Full kitchen', '24/7 butler service'],
+      features: ['Private waterfall', 'nature view', 'Peace', 'Birds Sound'],
+      image: '/src/assets/images/rooms5.jpeg'
+    },
+    {
+      name: 'Mudhouse - Clay Paradise',
+      type: 'mudhouse',
+      description: 'Perfect for families with spacious accommodations and convenient amenities.',
+      features: ['Connecting rooms', 'Gaming console', 'Children amenities', 'Family dining area'],
+      image: '/src/assets/images/mudhouses.JPG'
+    },
+    {
+      name: 'Mango House',
+      type: 'rooms',
+      description: 'Steps from the sand with exclusive beach access and luxurious accommodations.',
+      features: ['Direct beach access', 'Private pool', 'Outdoor dining area', 'Personal chef available'],
       image: '/src/assets/images/rooms3.JPG'
     },
     {
-      name: 'Family Suite',
-      type: 'suites',
-      description: 'Perfect for families with spacious accommodations and convenient amenities.',
-      price: 'From $499 per night',
-      size: '85 sq m',
-      beds: '1 King and 2 Twin',
-      occupancy: 'Up to 2 adults and 2 children',
-      features: ['Connecting rooms', 'Gaming console', 'Children amenities', 'Family dining area'],
-      image: 'https://images.unsplash.com/photo-1576354302919-96748cb8299e?w=800&auto=format&fit=crop&q=60'
-    },
-    {
-      name: 'Beachfront Villa',
-      type: 'villas',
-      description: 'Steps from the sand with exclusive beach access and luxurious accommodations.',
-      price: 'From $999 per night',
-      size: '150 sq m',
-      beds: '1 King',
-      occupancy: 'Up to 2 adults',
-      features: ['Direct beach access', 'Private pool', 'Outdoor dining area', 'Personal chef available'],
-      image: 'https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&auto=format&fit=crop&q=60'
-    },
-    {
-      name: 'Premium Mountain View Room',
-      type: 'rooms',
+      name: 'Tree House',
+      type: 'tree house',
       description: 'Enjoy breathtaking mountain views from this well-appointed room.',
-      price: 'From $259 per night',
-      size: '40 sq m',
-      beds: '1 King or 2 Queen',
-      occupancy: 'Up to 2 adults',
-      features: ['Mountain views', 'Private balcony', 'Rainfall shower', 'Work desk'],
-      image: 'https://images.unsplash.com/photo-1444201983204-c43cbd584d93?w=800&auto=format&fit=crop&q=60'
+      features: ['Mountain views', 'Green Sight', 'Nature leaf fall', 'Wood Steps'],
+      image: '/src/assets/images/treehouse.jpeg'
     }
   ];
   
@@ -81,251 +57,129 @@ const Rooms = () => {
   
   // Function to render different card styles based on index
   const getCardStyle = (room, index) => {
-    const cardStyle = index % 4;
+    const cardStyle = index % 3;
     
     switch(cardStyle) {
-      // Style 1: Image on left, text on right
+      // Style 1: Modern image overlay with gradient and minimal info
       case 0:
         return (
-          <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300 border border-emerald-700/30">
-            <div className="md:flex">
-              <div className="md:w-2/5">
-                <img src={room.image} alt={room.name} className="h-64 w-full object-cover md:h-full" />
-              </div>
-              <div className="md:w-3/5 p-6">
-                <div className="uppercase tracking-wide text-xs text-teal-400 font-semibold">
+          <div className="group relative h-96 rounded-xl overflow-hidden shadow-lg hover:shadow-emerald-500/30 transition-all duration-500 transform hover:-translate-y-1">
+            <div className="absolute inset-0">
+              <img src={room.image} alt={room.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+            </div>
+            
+            <div className="absolute inset-0 flex flex-col justify-end p-6 transition-transform duration-300">
+              <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="bg-emerald-600/90 text-white text-xs font-bold uppercase tracking-wider py-1 px-2 rounded-md inline-block mb-3">
                   {room.type}
                 </div>
-                <h3 className="mt-2 text-xl font-semibold text-white">{room.name}</h3>
-                <p className="mt-2 text-white">{room.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{room.name}</h3>
+                <p className="text-gray-200 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{room.description}</p>
                 
-                <div className="mt-4 grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="block text-white text-sm">Size</span>
-                    <span className="font-medium text-white">{room.size}</span>
-                  </div>
-                  <div>
-                    <span className="block text-white text-sm">Beds</span>
-                    <span className="font-medium text-white">{room.beds}</span>
-                  </div>
-                  <div>
-                    <span className="block text-white text-sm">Occupancy</span>
-                    <span className="font-medium text-white">{room.occupancy}</span>
-                  </div>
-                  <div>
-                    <span className="block text-white text-sm">Price</span>
-                    <span className="font-medium text-teal-400">{room.price}</span>
-                  </div>
-                </div>
-                
-                <div className="mt-4">
-                  <h4 className="text-sm font-medium text-white">Key Features</h4>
-                  <ul className="mt-2 flex flex-wrap gap-2">
-                    {room.features.map((feature, idx) => (
-                      <li key={idx} className="text-sm bg-emerald-900/50 text-teal-300 px-3 py-1 rounded-full">
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="mt-6">
-                  <Link
-                    to="/contact"
-                    className="bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded transition-colors duration-300 inline-block"
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      
-      // Style 2: Image on top, text on bottom
-      case 1:
-        return (
-          <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300 border border-emerald-700/30">
-            <div className="relative">
-              <img src={room.image} alt={room.name} className="w-full h-64 object-cover" />
-              <div className="absolute top-4 right-4 bg-teal-600 text-white px-3 py-1 rounded-full text-sm">
-                {room.price}
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="uppercase tracking-wide text-xs text-teal-400 font-semibold">
-                {room.type}
-              </div>
-              <h3 className="mt-2 text-xl font-semibold text-white">{room.name}</h3>
-              <p className="mt-2 text-white">{room.description}</p>
-              
-              <div className="mt-4 flex flex-wrap gap-4">
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  </svg>
-                  <span className="text-white">{room.size}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4M8 16H4M4 8h4m12 4h-4m0-4h4m-4 8h4M9 4v16M15 4v16" />
-                  </svg>
-                  <span className="text-white">{room.beds}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <span className="text-white">{room.occupancy}</span>
-                </div>
-              </div>
-              
-              <div className="mt-4">
-                <h4 className="text-sm font-medium text-white">Key Features</h4>
-                <ul className="mt-2 flex flex-wrap gap-2">
-                  {room.features.slice(0, 3).map((feature, idx) => (
-                    <li key={idx} className="text-sm bg-emerald-900/50 text-emerald-300 px-3 py-1 rounded-full">
+                <div className="flex flex-wrap gap-2 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {room.features.map((feature, idx) => (
+                    <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded-full">
                       {feature}
-                    </li>
+                    </span>
                   ))}
-                  {room.features.length > 3 && (
-                    <li className="text-sm bg-gray-700 text-white px-3 py-1 rounded-full">
-                      +{room.features.length - 3} more
-                    </li>
-                  )}
-                </ul>
-              </div>
-              
-              <div className="mt-6">
+                </div>
+                
                 <Link
                   to="/contact"
-                  className="w-full bg-teal-600 hover:bg-teal-500 text-white py-2 rounded transition-colors duration-300 inline-block text-center"
+                  className="mt-4 bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded-md transition-colors duration-300 inline-block transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0"
                 >
-                  Book Now
+                  Discover
                 </Link>
               </div>
             </div>
           </div>
         );
       
-      // Style 3: Image on right, text on left (reverse of style 1)
-      case 2:
+      // Style 2: Card with image on top, text on bottom, elegant hover effect
+      case 1:
         return (
-          <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300 border border-emerald-700/30">
-            <div className="md:flex flex-row-reverse">
-              <div className="md:w-2/5">
-                <img src={room.image} alt={room.name} className="h-64 w-full object-cover md:h-full" />
+          <div className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 group">
+            <div className="relative h-64 overflow-hidden">
+              <img 
+                src={room.image} 
+                alt={room.name} 
+                className="w-full h-full object-cover transition-transform duration-700 transform group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+              <div className="absolute top-4 left-4">
+                <span className="bg-emerald-600/90 text-white text-xs uppercase tracking-wider py-1 px-3 rounded-full">
+                  {room.type}
+                </span>
               </div>
-              <div className="md:w-3/5 p-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="uppercase tracking-wide text-xs text-teal-400 font-semibold">
-                      {room.type}
-                    </div>
-                    <h3 className="mt-1 text-xl font-semibold text-white">{room.name}</h3>
-                  </div>
-                  <div className="bg-teal-600 text-white px-3 py-1 rounded-md text-sm">
-                    {room.price}
-                  </div>
-                </div>
-                <p className="mt-3 text-white">{room.description}</p>
-                
-                <div className="mt-4 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                    </svg>
-                    <span className="text-white">{room.size}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4M8 16H4M4 8h4m12 4h-4m0-4h4m-4 8h4M9 4v16M15 4v16" />
-                    </svg>
-                    <span className="text-white">{room.beds}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <span className="text-white">{room.occupancy}</span>
-                  </div>
-                </div>
-                
-                <div className="mt-4">
-                  <h4 className="text-sm font-medium text-white">Amenities</h4>
-                  <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2">
-                    {room.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <svg className="w-4 h-4 text-teal-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                        <span className="text-sm text-white">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="mt-6">
-                  <Link
-                    to="/contact"
-                    className="bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded transition-colors duration-300 inline-block"
-                  >
-                    Book Now
-                  </Link>
-                </div>
+            </div>
+            
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-teal-400 transition-colors duration-300">{room.name}</h3>
+              <p className="text-gray-300 mb-4">{room.description}</p>
+              
+              <div className="flex flex-wrap gap-2 mb-4">
+                {room.features.slice(0, 2).map((feature, idx) => (
+                  <span key={idx} className="bg-gray-700 text-teal-300 px-3 py-1 rounded-full text-xs">
+                    {feature}
+                  </span>
+                ))}
+                {room.features.length > 2 && (
+                  <span className="bg-gray-700 text-white px-3 py-1 rounded-full text-xs">
+                    +{room.features.length - 2} more
+                  </span>
+                )}
               </div>
+              
+              <Link
+                to="/contact"
+                className="inline-flex items-center text-teal-400 hover:text-teal-300 font-medium group-hover:translate-x-2 transition-transform duration-300"
+              >
+                Explore Room
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
             </div>
           </div>
         );
       
-      // Style 4: Full-width image with overlay text
-      case 3:
+      // Style 3: Full bleed image with elegant text positioning
+      case 2:
         return (
-          <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-emerald-500/20 transition-shadow duration-300 border border-emerald-700/30">
-            <div className="relative">
-              <img src={room.image} alt={room.name} className="w-full h-80 object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex flex-col justify-end p-6">
-                <div className="text-white">
-                  <div className="uppercase tracking-wide text-xs font-semibold mb-2 bg-teal-600 inline-block px-2 py-1 rounded">
-                    {room.type}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">{room.name}</h3>
-                  <p className="text-white mb-4">{room.description}</p>
-                  
-                  <div className="flex gap-4 mb-4">
-                    <div>
-                      <span className="block text-white text-xs">Size</span>
-                      <span className="font-medium">{room.size}</span>
+          <div className="relative h-96 rounded-xl overflow-hidden shadow-lg group">
+            <img 
+              src={room.image} 
+              alt={room.name} 
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 transform group-hover:scale-105" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent group-hover:from-black/90 transition-colors duration-300"></div>
+            
+            <div className="absolute inset-0 flex flex-col justify-center p-8">
+              <div className="max-w-xs">
+                <span className="inline-block bg-teal-600 text-white text-xs uppercase font-semibold tracking-wide py-1 px-2 rounded mb-3">
+                  {room.type}
+                </span>
+                <h3 className="text-2xl font-bold text-white mb-3">{room.name}</h3>
+                <p className="text-gray-200 mb-6 leading-relaxed">{room.description}</p>
+                
+                <div className="grid grid-cols-2 gap-2 mb-6">
+                  {room.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center">
+                      <svg className="w-4 h-4 text-teal-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm text-gray-200">{feature}</span>
                     </div>
-                    <div>
-                      <span className="block text-white text-xs">Beds</span>
-                      <span className="font-medium">{room.beds}</span>
-                    </div>
-                    <div>
-                      <span className="block text-white text-xs">Occupancy</span>
-                      <span className="font-medium">{room.occupancy}</span>
-                    </div>
-                    <div className="ml-auto">
-                      <span className="block text-white text-xs">Price</span>
-                      <span className="font-medium text-teal-400">{room.price}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-2 flex-wrap mb-4">
-                    {room.features.map((feature, idx) => (
-                      <span key={idx} className="text-xs bg-gray-900/50 backdrop-blur-sm px-2 py-1 rounded text-white">
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <Link
-                    to="/contact"
-                    className="bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded transition-colors duration-300 inline-block"
-                  >
-                    Book Now
-                  </Link>
+                  ))}
                 </div>
+                
+                <Link
+                  to="/contact"
+                  className="inline-block bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 py-2 px-6 rounded-md transition-colors duration-300"
+                >
+                  Book Experience
+                </Link>
               </div>
             </div>
           </div>
@@ -339,44 +193,46 @@ const Rooms = () => {
   return (
     <div className="bg-gray-900">
       {/* Hero Section */}
-      <div className="relative pt-24 pb-12 md:pt-32 md:pb-24">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-gray-900/70 z-10" />
+      <div className="relative pt-28 pb-16 md:pt-36 md:pb-28">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-gray-900/80 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/plant-foliage-board.jpg')" }}
+          style={{ backgroundImage: "url('/src/assets/images/IMG_5799.JPG')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-tight">
-            Accommodations
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
+            Your Sanctuary <span className="text-teal-400">Awaits</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white max-w-3xl leading-relaxed">
-            Discover our luxurious rooms, suites, and villas for an unforgettable stay.
+          <p className="text-lg sm:text-xl md:text-2xl text-white max-w-3xl leading-relaxed">
+            Discover our collection of luxurious accommodations nestled in the heart of nature.
           </p>
         </div>
       </div>
       
       {/* Accommodations */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-900 to-emerald-950">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-emerald-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                className={`px-6 py-2 rounded-full capitalize transition-colors duration-300 ${
-                  activeFilter === filter
-                    ? 'bg-teal-600 text-white'
-                    : 'bg-gray-700 text-white hover:bg-gray-600'
-                }`}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex bg-gray-800 rounded-full p-1">
+              {filters.map((filter) => (
+                <button
+                  key={filter}
+                  className={`px-6 py-2 rounded-full capitalize text-sm font-medium transition-all duration-300 ${
+                    activeFilter === filter
+                      ? 'bg-teal-600 text-white shadow-lg'
+                      : 'text-gray-300 hover:text-white'
+                  }`}
+                  onClick={() => setActiveFilter(filter)}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
           </div>
           
           {/* Accommodations Grid */}
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredAccommodations.map((room, index) => (
               <div key={index}>
                 {getCardStyle(room, index)}
@@ -386,101 +242,136 @@ const Rooms = () => {
         </div>
       </section>
       
-      {/* Amenities */}
-      <section className="py-12 md:py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4 tracking-wide">
-              Room Amenities
+      {/* Experience Section */}
+      <section className="py-16 md:py-24 bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <svg className="h-full w-full" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                <path d="M 50 0 L 0 0 0 50" fill="none" stroke="white" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4 tracking-wide">
+              The <span className="text-teal-400">Complete</span> Experience
             </h2>
-            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
-              All our accommodations include premium amenities for your comfort.
+            <p className="text-lg text-white max-w-3xl mx-auto leading-relaxed">
+              Every accommodation includes thoughtful amenities designed for your ultimate comfort and relaxation.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Premium Bedding",
-                description: "Luxury linens, plush pillows and premium mattresses for the perfect night's sleep.",
-                icon: (
-                  <svg className="w-8 h-8" xmlns="/src/assets/images/rooms1.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4M8 16H4M4 8h4m12 4h-4m0-4h4m-4 8h4M9 4v16M15 4v16" />
-                  </svg>
-                )
-              },
-              {
-                title: "High-Speed WiFi",
-                description: "Complimentary high-speed internet access throughout the resort.",
-                icon: (
-                  <svg className="w-8 h-8" xmlns="/src/assets/images/rooms2.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                  </svg>
-                )
-              },
-              {
-                title: "24/7 Room Service",
-                description: "Gourmet dining available in the comfort of your room, any time day or night.",
-                icon: (
-                  <svg className="w-8 h-8" xmlns="/src/assets/images/rooms3.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                )
-              },
-              {
-                title: "Daily Housekeeping",
-                description: "Impeccable service and attention to detail for a pristine environment.",
-                icon: (
-                  <svg className="w-8 h-8" xmlns="/src/assets/images/IMG_5799.JPG" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                )
-              }
-            ].map((amenity, index) => (
-              <div key={index} className="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-md border border-teal-700/30">
-                <div className="text-teal-400 mb-4">
-                  {amenity.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{amenity.title}</h3>
-                <p className="text-white text-sm">{amenity.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-lg border border-teal-900/30 hover:border-teal-500/40 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="text-teal-400 mb-5 group-hover:scale-110 transform transition-transform duration-300">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h14a2 2 0 012 2v12a4 4 0 01-4 4H7m-4-4v4h18v-4M7 7h10M7 11h10M7 15h4" />
+                </svg>
               </div>
-            ))}
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-teal-400 transition-colors duration-300">Bespoke Design</h3>
+              <p className="text-gray-300">Each room features unique design elements that blend local culture with modern luxury for an authentic experience.</p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-lg border border-teal-900/30 hover:border-teal-500/40 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="text-teal-400 mb-5 group-hover:scale-110 transform transition-transform duration-300">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 7c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm0-11c-4.97 0-9 4.03-9 9H0l4 4 4-4H5c0-3.87 3.13-7 7-7s7 3.13 7 7h-3l4 4 4-4h-3c0-4.97-4.03-9-9-9z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-teal-400 transition-colors duration-300">Personalized Service</h3>
+              <p className="text-gray-300">Our attentive staff anticipates your needs, ensuring a seamless and unforgettable stay tailored to your preferences.</p>
+            </div>
+            
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl shadow-lg border border-teal-900/30 hover:border-teal-500/40 transition-all duration-300 transform hover:-translate-y-1 group">
+              <div className="text-teal-400 mb-5 group-hover:scale-110 transform transition-transform duration-300">
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-teal-400 transition-colors duration-300">Immersive Experience</h3>
+              <p className="text-gray-300">Connect with nature and local culture through curated experiences that transform your stay into a journey of discovery.</p>
+            </div>
           </div>
         </div>
       </section>
       
       {/* Booking CTA */}
-      <section className="py-12 md:py-16 bg-emerald-950 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold mb-6 tracking-wide">
-            Ready to Book Your Stay?
-          </h2>
-          <p className="text-base sm:text-lg text-white mb-8 max-w-2xl mx-auto leading-relaxed">
-            Experience the ultimate luxury getaway. Book your accommodation today for the best rates and availability.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              to="/contact"
-              className="bg-white text-teal-800 hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors duration-300 inline-block"
-            >
-              Book Now
-            </Link>
-            <button className="border border-white text-white hover:bg-teal-900 px-6 py-3 rounded-md font-medium transition-colors duration-300">
-              View Special Offers
-            </button>
+      <section className="py-16 md:py-24 bg-emerald-950 relative">
+        <div className="absolute inset-0 opacity-20">
+          <svg className="w-full h-full" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,128C672,128,768,160,864,176C960,192,1056,192,1152,176C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-gradient-to-r from-gray-900/90 to-emerald-900/80 p-8 md:p-12 rounded-2xl shadow-2xl backdrop-blur-sm border border-white/10">
+            <div className="md:flex md:items-center md:justify-between">
+              <div className="md:w-2/3 mb-8 md:mb-0">
+                <h2 className="text-3xl font-serif font-bold text-white mb-4 tracking-wide">
+                  Begin Your <span className="text-teal-400">Journey</span> Today
+                </h2>
+                <p className="text-lg text-white mb-0 leading-relaxed">
+                  Book your stay now to experience the perfect blend of luxury, nature, and authentic local culture.
+                </p>
+              </div>
+              <div className="md:w-1/3 md:text-right">
+                <Link
+                  to="/contact"
+                  className="inline-block bg-white text-emerald-900 hover:bg-teal-50 px-8 py-4 rounded-lg font-bold shadow-lg transition-colors duration-300 text-center"
+                >
+                  Book Your Experience
+                </Link>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-teal-600/20 text-teal-400 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Exclusive Experiences</h3>
+              <p className="text-gray-300">Access to unique cultural and adventure activities only available to our guests.</p>
+            </div>
+            
+            <div>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-teal-600/20 text-teal-400 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Flexible Booking</h3>
+              <p className="text-gray-300">Hassle-free reservation changes and 24/7 support for your peace of mind.</p>
+            </div>
+            
+            <div>
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-teal-600/20 text-teal-400 mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Best Rate Promise</h3>
+              <p className="text-gray-300">Guaranteed lowest rates when you book directly through our website.</p>
+            </div>
           </div>
         </div>
       </section>
       
       {/* Testimonials */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-emerald-950 to-gray-900">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-emerald-950 to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4 tracking-wide">
-              Guest Experiences
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4 tracking-wide">
+              Guest <span className="text-teal-400">Stories</span>
             </h2>
-            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
-              Hear what our guests have to say about their stay with us.
+            <p className="text-lg text-white max-w-3xl mx-auto leading-relaxed">
+              Authentic experiences shared by those who've called our accommodations home.
             </p>
           </div>
           
@@ -490,101 +381,188 @@ const Rooms = () => {
                 name: "MALATHY",
                 location: "Tirunelveli, Tamilnadu",
                 quote: "The Presidential Villa exceeded all our expectations. The private falls and sun sets were breathtaking, and the staff went above and beyond to make our anniversary special.",
-                rating: 5
+                avatar: "/src/assets/images/lighthouse.jpeg"
               },
               {
                 name: "SURAV",
                 location: "Kochin, Kerala",
                 quote: "Our family had an amazing time in the Family Suite. The children's amenities were thoughtful, and the connecting rooms gave everyone their own space while keeping us together.",
-                rating: 5
+                avatar: "/src/assets/images/tentclient.jpeg"
               },
               {
                 name: "MANIRAM",
                 location: "Chennai, Tamilnadu",
                 quote: "My stay in the Deluxe sun set Room was the perfect escape. Waking up to those stunning views every morning was the highlight of my trip.",
-                rating: 4
+                avatar: "/src/assets/images/trekking.jpeg"
               }
             ].map((testimonial, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-md border border-emerald-700/30">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <div key={index} className="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-xl shadow-lg border border-white/5 hover:border-teal-500/20 transition-all duration-300">
+                <div className="flex items-center mb-6">
+                  <div className="flex-shrink-0 mr-4">
+                    <img className="h-12 w-12 rounded-full object-cover" src={testimonial.avatar} alt={testimonial.name} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">{testimonial.name}</h3>
+                    <p className="text-sm text-teal-400">{testimonial.location}</p>
+                  </div>
+                </div>
+                <p className="text-gray-300 italic leading-relaxed">"{testimonial.quote}"</p>
+                <div className="mt-6 flex text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <p className="text-white italic mb-4">"{testimonial.quote}"</p>
-                <div>
-                  <p className="font-semibold text-white">{testimonial.name}</p>
-                  <p className="text-sm text-gray-300">{testimonial.location}</p>
-                </div>
               </div>
             ))}
-          </div>
-          
-          <div className="text-center mt-10">
-            <Link to="/reviews" className="text-teal-400 hover:text-teal-300 font-medium inline-flex items-center">
-              Read more guest reviews
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
           </div>
         </div>
       </section>
       
-      {/* FAQ Section */}
-      <section className="py-12 md:py-16 bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4 tracking-wide">
-              Frequently Asked Questions
+      {/* FAQ Section - Simplified and Sleeker */}
+      <section className="py-16 md:py-24 bg-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4 tracking-wide">
+              Frequently Asked <span className="text-teal-400">Questions</span>
             </h2>
-            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
-              Find answers to common questions about our accommodations.
+            <p className="text-lg text-white leading-relaxed">
+              Everything you need to know about your stay.
             </p>
           </div>
           
-          <div className="max-w-3xl mx-auto divide-y divide-emerald-700/30">
+          <div className="space-y-6">
             {[
               {
                 question: "What time is check-in and check-out?",
                 answer: "Standard check-in time is 3:00 PM, and check-out time is 11:00 AM. Early check-in and late check-out may be available upon request, subject to availability."
               },
               {
-                question: "Do you offer airport transfers?",
-                answer: "Yes, we offer airport transfers for all our guests. Luxury vehicles and private helicopters are available depending on your preference. Please contact our concierge to arrange transportation."
+                question: "Are meals included with the stay?",
+                answer: "Breakfast is included with all bookings. For villas and suites, we also offer a complimentary welcome dinner. Our property features multiple dining options ranging from casual to fine dining experiences."
               },
               {
-                question: "Are children welcome at the resort?",
-                answer: "Absolutely! We welcome guests of all ages. Our Family Suites are specially designed for families with children, and we offer a variety of kids' activities and amenities."
+                question: "Do you accommodate special dietary requirements?",
+                answer: "Absolutely. Our culinary team can accommodate most dietary requirements including vegetarian, vegan, gluten-free, and allergy-specific meals. Please inform us of any requirements when booking."
               },
               {
-                question: "Is breakfast included with the room?",
-                answer: "Yes, all our room rates include complimentary breakfast at our main restaurant. In-room dining breakfast options are also available."
-              },
-              {
-                question: "Can I request special accommodations?",
-                answer: "Of course. We strive to meet all special requests. Please inform us of any specific needs or preferences at the time of booking, and our staff will do their best to accommodate them."
+                question: "What activities are available on the property?",
+                answer: "We offer a wide range of activities including yoga sessions, guided nature walks, cultural performances, and water sports. Our concierge can help you schedule these experiences."
               }
+            
             ].map((faq, index) => (
-              <div key={index} className="py-6">
-                <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
-                <p className="text-white">{faq.answer}</p>
+              <div key={index} className="border-b border-gray-800 pb-6">
+                <h3 className="text-xl font-bold text-white mb-3">{faq.question}</h3>
+                <p className="text-gray-300">{faq.answer}</p>
               </div>
             ))}
           </div>
           
-          <div className="text-center mt-10">
-            <p className="text-white">
-              Have more questions? Contact our concierge at{' '}
-              <a href="mailto:concierge@luxuryresort.com" className="text-teal-400 hover:text-teal-300 font-medium">
-                concierge@luxuryresort.com
-              </a>{' '}
-              or call{' '}
-              <a href="tel:+18001234567" className="text-teal-400 hover:text-teal-300 font-medium">
-                +1 (800) 123-4567
-              </a>.
+          <div className="mt-12 text-center">
+            <p className="text-gray-300 mb-4">Still have questions? We're here to help.</p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center text-teal-400 hover:text-teal-300 font-medium group"
+            >
+              Contact Our Concierge
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+      
+      {/* Virtual Tour Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-t from-gray-900 to-emerald-950 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="md:flex md:items-center md:justify-between">
+            <div className="md:w-1/2 mb-10 md:mb-0">
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4 tracking-wide">
+                Experience Before You <span className="text-teal-400">Arrive</span>
+              </h2>
+              <p className="text-lg text-white mb-6 leading-relaxed">
+                Explore our accommodations through our immersive virtual tour. Get a feel for the spaces, views, and ambiance before you make your decision.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button className="bg-teal-600 hover:bg-teal-500 text-white py-3 px-6 rounded-md font-medium transition-colors duration-300 flex items-center">
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  Start Virtual Tour
+                </button>
+                <Link 
+                  to="/gallery"
+                  className="bg-transparent hover:bg-white/10 text-white border border-white/30 py-3 px-6 rounded-md font-medium transition-colors duration-300 flex items-center"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  View Gallery
+                </Link>
+              </div>
+            </div>
+            <div className="md:w-1/2 relative">
+              <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden relative shadow-2xl border border-white/10">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-20 h-20 rounded-full bg-teal-600/90 flex items-center justify-center mx-auto mb-4 pulse-animation">
+                      <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    <p className="text-white text-lg font-medium">Experience Our Virtual Tour</p>
+                  </div>
+                </div>
+                <img 
+                  src="\src\assets\images\IMG_5799.JPG" 
+                  alt="Virtual tour thumbnail" 
+                  className="w-full h-full object-cover opacity-50"
+                />
+              </div>
+              
+              {/* Tour hotspots */}
+              <div className="absolute top-1/4 left-1/4 w-8 h-8 bg-teal-400/80 rounded-full animate-pulse"></div>
+              <div className="absolute top-2/3 right-1/3 w-8 h-8 bg-teal-400/80 rounded-full animate-pulse"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-8 h-8 bg-teal-400/80 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+      
+      {/* Newsletter Section */}
+      <section className="py-16 md:py-24 bg-emerald-950 relative overflow-hidden">
+        <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-teal-500 rounded-full opacity-10 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 transform -translate-x-1/4 translate-y-1/4 w-96 h-96 bg-teal-500 rounded-full opacity-10 blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-4 tracking-wide">
+              Stay <span className="text-teal-400">Connected</span>
+            </h2>
+            <p className="text-lg text-white mb-8 leading-relaxed">
+              Subscribe to our newsletter for exclusive offers, travel inspirations, and updates about our new experiences.
+            </p>
+            
+            <form className="flex flex-col md:flex-row gap-4">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-grow px-6 py-4 rounded-lg bg-white/10 backdrop-blur-sm text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
+              />
+              <button
+                type="submit"
+                className="bg-teal-600 hover:bg-teal-500 text-white py-4 px-8 rounded-lg font-medium transition-colors duration-300 md:flex-shrink-0"
+              >
+                Subscribe Now
+              </button>
+            </form>
+            
+            <p className="text-sm text-gray-300 mt-4">
+              By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
             </p>
           </div>
         </div>

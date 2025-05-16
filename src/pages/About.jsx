@@ -8,7 +8,7 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-teal-950/80 to-gray-900/70 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/IMG_579.JPG')" }}
+          style={{ backgroundImage: "url('/src/assets/images/IMG_5799.JPG')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight drop-shadow-lg animate-slide-in-left">
@@ -253,13 +253,13 @@ const About = () => {
               <text x="260" y="205" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#d3c7b8">JEEP SAFARI</text>
               <text x="300" y="385" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#d3c7b8">CAMP FIRE</text>
               <text x="500" y="385" font-family="Arial" font-size="12" font-weight="bold" text-anchor="middle" fill="#d3c7b8">DJ MUSIC</text>
-              <text x="400" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#d3c7b8">MAIN LODGE</text>
+              <text x="400" y="320" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#d3c7b8">Main Area</text>
               
               <rect x="600" y="100" width="180" height="100" fill="#2e3d2b" fill-opacity="0.8" rx="5" ry="5" stroke="#8b7560" stroke-width="2" />
               <text x="690" y="120" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#d3c7b8">ACTIVITY SCHEDULE</text>
-              <text x="610" y="140" font-family="Arial" font-size="10" fill="#d3c7b8">🌄 Jeep Safari: 5:30 AM - 8:00 AM</text>
+              <text x="610" y="140" font-family="Arial" font-size="10" fill="#d3c7b8">🌄 Jeep Safari: 2Kms</text>
               <text x="610" y="155" font-family="Arial" font-size="10" fill="#d3c7b8">💦 Private Waterfall: 10:00 AM - 1:00 PM</text>
-              <text x="610" y="170" font-family="Arial" font-size="10" fill="#d3c7b8">🔥 Camp Fire: 6:00 PM - 8:00 PM</text>
+              <text x="610" y="170" font-family="Arial" font-size="10" fill="#d3c7b8">🔥 Camp Fire: 8:00 PM - 10:00 PM</text>
               <text x="610" y="185" font-family="Arial" font-size="10" fill="#d3c7b8">🎵 DJ Music: 9:00 PM - 12:00 AM</text>
               
               <line x1="650" y1="550" x2="750" y2="550" stroke="#8b7560" stroke-width="2" />
