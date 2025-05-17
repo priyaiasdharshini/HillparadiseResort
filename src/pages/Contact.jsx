@@ -304,24 +304,18 @@ const Contact = () => {
             {[
               {
                 question: "What are the check-in and check-out times?",
-                answer: "Check-in time is 3:00 PM and check-out time is 11:00 AM. Early check-in and late check-out can be arranged based on availability for an additional fee."
+                answer: "Check-in time is 2:00 PM and check-out time is 11:00 AM. Early check-in and late check-out can be arranged based on availability for an additional fee."
               },
               {
                 question: "Is there a minimum stay requirement?",
                 answer: "During peak season (December-April), we have a 3-night minimum stay requirement. During other times of the year, there is no minimum stay requirement."
               },
-              {
-                question: "Do you offer airport transfers?",
-                answer: "Yes, we provide complimentary round-trip airport transfers for all our guests. Please provide your flight details at least 48 hours prior to arrival."
-              },
+              
               {
                 question: "Are children welcome at the resort?",
                 answer: "Yes, we welcome guests of all ages. We offer a Kids Club with supervised activities, children's menus at our restaurants, and babysitting services upon request."
               },
-              {
-                question: "Is Wi-Fi available at the resort?",
-                answer: "Yes, complimentary high-speed Wi-Fi is available throughout the resort, including all guest rooms, public areas, and even on our private beach."
-              },
+              
               {
                 question: "What is your cancellation policy?",
                 answer: "Cancellations made 30 days or more before arrival receive a full refund. Cancellations 15-29 days before arrival incur a one-night charge. Cancellations less than 15 days before arrival are non-refundable."

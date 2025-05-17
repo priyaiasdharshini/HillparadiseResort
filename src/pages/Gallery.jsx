@@ -1,173 +1,182 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Gallery = () => {
+const ResortGallery = () => {
+  const [activeTab, setActiveTab] = useState('photos');
   const [activeCategory, setActiveCategory] = useState('all');
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeLightbox, setActiveLightbox] = useState(null);
   const [isAutoplay, setIsAutoplay] = useState(true);
-  const [isDragging, setIsDragging] = useState(false);
-  const [setStartPosition] = useState(0);
-  const [currentTranslate, setCurrentTranslate] = useState(0);
-  const autoplayRef = useRef(null);
-  const carouselRef = useRef(null);
-  const dragStartRef = useRef(0);
-  const dragCurrentRef = useRef(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const videoRefs = useRef([]);
 
-  const categories = ['all', 'rooms', 'dining', 'amenities', 'experiences'];
+  const photoCategories = ['all', 'mudhouse', 'rooms', 'activities'];
+  const videoCategories = ['all', 'mudhouse', 'rooms', 'activities'];
 
-  const images = [
-    { src: '/src/assets/images/IMG_5796.JPG', category: 'rooms', title: 'Deluxe Ocean View Room' },
-    { src: '/src/assets/images/IMG_5799.JPG', category: 'rooms', title: 'Presidential Suite' },
-    { src: '/src/assets/images/IMG_5799.JPG', category: 'dining', title: 'Oceanfront Restaurant' },
-    { src: '/src/assets/images/IMG_5783.JPG', category: 'dining', title: 'Sunset Bar' },
-    { src: '/src/assets/images/IMG_5799.JPG', category: 'amenities', title: 'Infinity Pool' },
-    { src: '/src/assets/images/IMG_5784.JPG', category: 'amenities', title: 'Luxury Spa' },
-    { src: '/src/assets/images/IMG_5789.JPG', category: 'experiences', title: 'Beach Yoga' },
-    { src: '/src/assets/images/IMG_5793.JPG', category: 'experiences', title: 'Scuba Diving' },
-    { src: '/src/assets/images/IMG_5799.JPG', category: 'rooms', title: 'Garden Suite' },
-    { src: '/src/assets/images/rooms3.JPG', category: 'amenities', title: 'Fitness Center' },
-    { src: '/src/assets/images/rooms2.JPG', category: 'dining', title: 'Fine Dining Experience' },
-    { src: '/src/assets/images/rooms1.JPG', category: 'experiences', title: 'Sunset Cruise' }
+  const photoItems = [
+    { src: '/src/assets/images/rooms1.JPG', category: 'mudhouse', title: 'Traditional Mud House Clay Haven' },
+    { src: '/src/assets/images/rooms2.JPG', category: 'mudhouse', title: 'Mud House Interior Suite' },
+    { src: '/src/assets/images/mudhouse2.jpeg', category: 'mudhouse', title: 'Mud House Courtyard' },
+    { src: '/src/assets/images/IMG_5796.JPG', category: 'rooms', title: 'Deluxe Nature View Room' },
+    { src: '/src/assets/images/rooms3.JPG', category: 'rooms', title: 'Presidential Suite' },
+
+    { src: '/src/assets/images/WhatsApp Image 2025-05-15 at 5.09.13 PM.jpeg', category: 'rooms', title: 'Garden Suite' },
+    { src: '/src/assets/images/falls.jpeg', category: 'activities', title: 'Waterfall' },
+    { src: '/src/assets/images/ofroadjeefsafari.jpeg', category: 'activities', title: 'Nature Hiking Trail' },
+    { src: '/src/assets/images/trekking.jpeg', category: 'activities', title: 'View Point Trekking' },
+    { src: 'src/assets/images/ofroadjeefsafari.jpeg', category: 'activities', title: 'Off road Safari' },
+    { src: '/src/assets/images/guestatwaterfall.jpeg', category: 'activities', title: 'waterfall' },
+    { src: '/src/assets/images/firecamp.jpeg', category: 'activities', title: 'FireCamp' },
+    { src: '/src/assets/images/tentclient.jpeg', category: 'activities', title: 'tent stay' },
+    { src: '/src/assets/images/music dj.jpeg', category: 'activities', title: 'Dj Music' },
+    { src: '/src/assets/images/barbeque.jpeg', category: 'activities', title: 'Barbeque' },
+    { src: '/src/assets/images/rooms4.jpeg', category: 'rooms', title: 'Nature Treat' },
+    { src: '/src/assets/images/rooms5.jpeg', category: 'rooms', title: 'Villa' },
+    { src: '/src/assets/images/IMG_5783.JPG', category: 'rooms', title: 'Room' },
+    { src: '/src/assets/images/IMG_5784.JPG', category: 'rooms', title: 'Room' },
+    { src: '/src/assets/images/tentclient (2).jpeg', category: 'activities', title: 'Tent Stay' }
+
   ];
 
-  const filteredImages = activeCategory === 'all' 
-    ? images 
-    : images.filter(image => image.category === activeCategory);
+  const videoItems = [
+    {
+      src: '/src/assets/images/DJI_0370.MP4',
+      poster: '/images/video-poster.jpg',
+      category: 'activities',
+      title: 'Resort Aerial View',
+      description: 'Beautiful aerial footage of our resort and surrounding nature',
+    },
+    {
+      src: '/src/assets/images/trekking video.mp4',
+      poster: '/images/trekking-poster.jpg',
+      category: 'activities',
+      title: 'Nature Trekking',
+      description: 'Guided trekking through our scenic nature trails',
+    },
+     {
+      src: '/src/assets/images/waterfallslidingvideo.mp4',
+      poster: '/images/trekking-poster.jpg',
+      category: 'activities',
+      title: 'Sliding WaterFall',
+      description: 'Sliding waterFall from our Hill paradise Location',
+    },
+  ];
 
-  // Reset carousel when category changes
+  const getFilteredItems = () => {
+    const items = activeTab === 'photos' ? photoItems : videoItems;
+    return activeCategory === 'all' ? items : items.filter((item) => item.category === activeCategory);
+  };
+
+  const filteredItems = getFilteredItems();
+
+  // Autoplay effect for photos
+  useEffect(() => {
+    let interval;
+    if (activeTab === 'photos' && isAutoplay && !activeLightbox) {
+      interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
+      }, 4000);
+    }
+    return () => clearInterval(interval);
+  }, [activeTab, isAutoplay, filteredItems.length, activeLightbox]);
+
+  // Reset index when category or tab changes
   useEffect(() => {
     setCurrentIndex(0);
-    resetAutoplay();
-  }, [activeCategory]);
+  }, [activeCategory, activeTab]);
 
-  // Autoplay effect
-  useEffect(() => {
-    if (isAutoplay) {
-      autoplayRef.current = setInterval(() => {
-        setCurrentIndex(prevIndex => (prevIndex + 1) % filteredImages.length);
-      }, 4000);
+  const openLightbox = (index) => {
+    setActiveLightbox(filteredItems[index]);
+    setCurrentIndex(index);
+  };
+
+  const closeLightbox = () => {
+    // Pause any playing videos when closing lightbox
+    videoRefs.current.forEach((video) => {
+      if (video) video.pause();
+    });
+    setActiveLightbox(null);
+  };
+
+  const navigateLightbox = (direction) => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + direction + filteredItems.length) % filteredItems.length;
+      setActiveLightbox(filteredItems[newIndex]);
+      return newIndex;
+    });
+  };
+
+  const playVideo = (index) => {
+    // Pause all other videos
+    videoRefs.current.forEach((video, i) => {
+      if (video && i !== index) video.pause();
+    });
+
+    // Play the selected video
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].play().catch((error) => {
+        console.error('Video playback failed:', error);
+      });
     }
-
-    return () => {
-      if (autoplayRef.current) {
-        clearInterval(autoplayRef.current);
-      }
-    };
-  }, [isAutoplay, filteredImages.length]);
-
-  const resetAutoplay = () => {
-    if (autoplayRef.current) {
-      clearInterval(autoplayRef.current);
-    }
-    
-    if (isAutoplay) {
-      autoplayRef.current = setInterval(() => {
-        setCurrentIndex(prevIndex => (prevIndex + 1) % filteredImages.length);
-      }, 4000);
-    }
-  };
-
-  const pauseAutoplay = () => {
-    setIsAutoplay(false);
-    if (autoplayRef.current) {
-      clearInterval(autoplayRef.current);
-    }
-  };
-
-  const resumeAutoplay = () => {
-    setIsAutoplay(true);
-  };
-
-  const handlePrevious = () => {
-    pauseAutoplay();
-    setCurrentIndex(prevIndex => (prevIndex - 1 + filteredImages.length) % filteredImages.length);
-  };
-
-  const handleNext = () => {
-    pauseAutoplay();
-    setCurrentIndex(prevIndex => (prevIndex + 1) % filteredImages.length);
-  };
-
-  const getCardPosition = (index) => {
-    const activeIndex = currentIndex;
-    const totalItems = filteredImages.length;
-    
-    let distance = (index - activeIndex + totalItems) % totalItems;
-    if (distance > totalItems / 2) distance -= totalItems;
-    
-    return {
-      rotateY: distance * 40,
-      z: distance === 0 ? 0 : -200,
-      x: distance * 50,
-      scale: 1 - Math.min(0.3, Math.abs(distance) * 0.15),
-      opacity: 1 - Math.min(0.5, Math.abs(distance) * 0.2),
-      zIndex: totalItems - Math.abs(distance)
-    };
-  };
-
-  const onDragStart = (e) => {
-    pauseAutoplay();
-    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    
-    setIsDragging(true);
-    setStartPosition(clientX);
-    dragStartRef.current = clientX;
-    dragCurrentRef.current = clientX;
-  };
-
-  const onDragMove = (e) => {
-    if (!isDragging) return;
-    
-    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    
-    dragCurrentRef.current = clientX;
-    const diff = dragCurrentRef.current - dragStartRef.current;
-    setCurrentTranslate(diff);
-  };
-  
-  const onDragEnd = () => {
-    if (!isDragging) return;
-    
-    const diff = currentTranslate;
-    
-    if (diff < -50) {
-      handleNext();
-    } else if (diff > 50) {
-      handlePrevious();
-    }
-    
-    setIsDragging(false);
-    setCurrentTranslate(0);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white pb-12">
       {/* Hero Banner */}
       <div className="relative pt-32 pb-16 md:pb-32">
         <div className="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-black/80 z-10" />
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/src/assets/images/IMG_5799.JPG')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
-            Gallery
+            Resort Gallery
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl">
-            Explore the beauty and luxury of Paradise Resort through our photo gallery.
+            Explore the beauty and tranquility of our resort through photos and videos showcasing our unique mud houses, rooms, and activities.
           </p>
         </div>
       </div>
 
+      {/* Tab Selector */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div className="flex justify-center mb-8">
+          <div className="bg-gray-800 p-1 rounded-xl shadow-xl">
+            <div className="flex space-x-1">
+              <button
+                className={`px-6 py-3 text-lg font-medium rounded-lg transition-all duration-300 ${
+                  activeTab === 'photos'
+                    ? 'bg-teal-600 text-white shadow-lg'
+                    : 'text-gray-300 hover:bg-gray-700'
+                }`}
+                onClick={() => setActiveTab('photos')}
+              >
+                Photos
+              </button>
+              <button
+                className={`px-6 py-3 text-lg font-medium rounded-lg transition-all duration-300 ${
+                  activeTab === 'videos'
+                    ? 'bg-teal-600 text-white shadow-lg'
+                    : 'text-gray-300 hover:bg-gray-700'
+                }`}
+                onClick={() => setActiveTab('videos')}
+              >
+                Videos
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Category Filter */}
-      <section className="py-12">
+      <section className="py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {categories.map((category) => (
+            {(activeTab === 'photos' ? photoCategories : videoCategories).map((category) => (
               <button
                 key={category}
                 className={`px-6 py-2 rounded-full capitalize font-medium transition-all duration-300 ${
                   activeCategory === category
-                    ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20 scale-105 ring-2 ring-teal-400'
+                    ? 'bg-teal-600 text-white shadow-lg ring-2 ring-teal-400'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-teal-400 shadow-md'
                 }`}
                 onClick={() => setActiveCategory(category)}
@@ -179,513 +188,356 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* 3D Carousel */}
-      <section className="pb-20">
+      {/* Photo Gallery */}
+      {activeTab === 'photos' && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {filteredImages.length > 0 ? (
-            <div className="carousel-section">
-              <div 
-                className="carousel-container"
-                ref={carouselRef}
-                onMouseDown={onDragStart}
-                onMouseMove={onDragMove}
-                onMouseUp={onDragEnd}
-                onMouseLeave={onDragEnd}
-                onTouchStart={onDragStart}
-                onTouchMove={onDragMove}
-                onTouchEnd={onDragEnd}
-              >
-                <div className="carousel-stage">
-                  {filteredImages.map((image, index) => {
-                    const pos = getCardPosition(index);
-                    return (
-                      <div 
-                        key={index}
-                        className={`carousel-card ${currentIndex === index ? 'active' : ''}`}
-                        style={{
-                          transform: `
-                            translateX(${pos.x + (currentIndex === index ? currentTranslate * 0.1 : 0)}px) 
-                            translateZ(${pos.z}px) 
-                            rotateY(${pos.rotateY}deg) 
-                            scale(${pos.scale})
-                          `,
-                          opacity: pos.opacity,
-                          zIndex: pos.zIndex
-                        }}
-                        onClick={() => {
-                          if (index !== currentIndex) {
-                            pauseAutoplay();
-                            setCurrentIndex(index);
-                          }
-                        }}
-                      >
-                        <div className="carousel-card-inner">
-                          <img 
-                            src={image.src} 
-                            alt={image.title} 
-                            className="carousel-image"
-                          />
-                          <div className={`carousel-caption ${currentIndex === index ? 'active' : ''}`}>
-                            <h3 className="card-title">{image.title}</h3>
-                            <span className="card-category">{image.category}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Navigation Controls */}
-                <button 
-                  className="carousel-nav prev"
-                  onClick={handlePrevious}
-                  aria-label="Previous image"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-icon">
-                    <path d="M15 18l-6-6 6-6" />
-                  </svg>
-                </button>
-
-                <button 
-                  className="carousel-nav next"
-                  onClick={handleNext}
-                  aria-label="Next image"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nav-icon">
-                    <path d="M9 18l6-6-6-6" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Carousel Controls & Indicators */}
-              <div className="carousel-controls">
-                <div className="flex items-center justify-between">
-                  <div className="carousel-indicators">
-                    {filteredImages.map((_, index) => (
-                      <button
-                        key={index}
-                        className={`carousel-indicator ${currentIndex === index ? 'active' : ''}`}
-                        onClick={() => {
-                          pauseAutoplay();
-                          setCurrentIndex(index);
-                        }}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
+          {filteredItems.length > 0 ? (
+            <div className="mb-8">
+              {/* Featured Photo */}
+              <div className="mb-6">
+                <div className="relative rounded-xl overflow-hidden shadow-2xl bg-gray-800 h-96 lg:h-[500px] group">
+                  <img
+                    src={filteredItems[currentIndex].src}
+                    alt={filteredItems[currentIndex].title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8">
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                        {filteredItems[currentIndex].title}
+                      </h3>
+                      <span className="inline-block bg-teal-600 px-3 py-1 rounded-full text-sm text-white capitalize">
+                        {filteredItems[currentIndex].category}
+                      </span>
+                    </div>
                   </div>
-
-                  <button 
-                    className={`autoplay-button ${isAutoplay ? 'active' : ''}`}
-                    onClick={() => isAutoplay ? pauseAutoplay() : resumeAutoplay()}
-                    aria-label={isAutoplay ? "Pause slideshow" : "Play slideshow"}
+                  <button
+                    className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/50 hover:bg-teal-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                    onClick={() => {
+                      setIsAutoplay(false);
+                      setCurrentIndex((prevIndex) => (prevIndex - 1 + filteredItems.length) % filteredItems.length);
+                    }}
                   >
-                    {isAutoplay ? (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                        <rect x="6" y="4" width="4" height="16"></rect>
-                        <rect x="14" y="4" width="4" height="16"></rect>
-                      </svg>
-                    ) : (
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                      </svg>
-                    )}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/50 hover:bg-teal-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                    onClick={() => {
+                      setIsAutoplay(false);
+                      setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                  <button
+                    className="absolute top-4 right-4 bg-black/50 hover:bg-teal-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                    onClick={() => openLightbox(currentIndex)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
                   </button>
                 </div>
               </div>
 
-              {/* Thumbnails */}
-              <div className="thumbnails-container">
-                <div className="thumbnails-track">
-                  {filteredImages.map((image, index) => (
-                    <div
-                      key={index}
-                      className={`thumbnail ${currentIndex === index ? 'active' : ''}`}
-                      onClick={() => {
-                        pauseAutoplay();
-                        setCurrentIndex(index);
-                      }}
-                    >
-                      <img 
-                        src={image.src}
-                        alt={`Thumbnail ${index + 1}`}
-                        loading="lazy"
-                      />
-                      <div className="thumbnail-overlay">
-                        <span className="thumbnail-index">{index + 1}</span>
-                      </div>
-                    </div>
-                  ))}
+              {/* Gallery Controls */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center space-x-2">
+                  <button
+                    className={`flex items-center justify-center p-2 rounded-full transition-all duration-300 ${
+                      isAutoplay ? 'bg-teal-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                    }`}
+                    onClick={() => setIsAutoplay(!isAutoplay)}
+                  >
+                    {isAutoplay ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                  <span className="text-gray-400 text-sm">
+                    {currentIndex + 1} / {filteredItems.length}
+                  </span>
                 </div>
+
+                <div className="flex space-x-1">
+                  {filteredItems.length > 5 ? (
+                    <div className="flex space-x-1">
+                      {[...Array(Math.min(5, filteredItems.length))].map((_, i) => {
+                        const dotIndex =
+                          currentIndex < 2
+                            ? i
+                            : currentIndex > filteredItems.length - 3
+                            ? filteredItems.length - 5 + i
+                            : currentIndex - 2 + i;
+                        return (
+                          <button
+                            key={i}
+                            className={`w-2 h-2 rounded-full transition-all ${
+                              dotIndex === currentIndex ? 'bg-teal-500 w-4' : 'bg-gray-600'
+                            }`}
+                            onClick={() => {
+                              setIsAutoplay(false);
+                              setCurrentIndex(dotIndex);
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="flex space-x-1">
+                      {filteredItems.map((_, i) => (
+                        <button
+                          key={i}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            i === currentIndex ? 'bg-teal-500 w-4' : 'bg-gray-600'
+                          }`}
+                          onClick={() => {
+                            setIsAutoplay(false);
+                            setCurrentIndex(i);
+                          }}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Thumbnails */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {filteredItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`relative rounded-lg overflow-hidden cursor-pointer group aspect-video ${
+                      index === currentIndex ? 'ring-2 ring-teal-500' : ''
+                    }`}
+                    onClick={() => {
+                      setIsAutoplay(false);
+                      setCurrentIndex(index);
+                    }}
+                  >
+                    <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                      <span className="text-white font-medium text-sm">{index + 1}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
-            <div className="text-center py-20 bg-gray-800 rounded-lg shadow-md">
-              <p className="text-gray-400 text-lg">No images available for this category.</p>
+            <div className="bg-gray-800 rounded-xl p-8 text-center">
+              <p className="text-gray-400">No photos available for this category.</p>
             </div>
           )}
         </div>
-      </section>
+      )}
 
-      <style jsx>{`
-        .carousel-section {
-          padding: 20px 0;
-        }
+      {/* Video Gallery */}
+      {activeTab === 'videos' && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {filteredItems.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredItems.map((video, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-800 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-teal-900/30 hover:scale-105"
+                >
+                  <div className="relative aspect-video">
+                    <video
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      poster={video.poster}
+                      className="w-full h-full object-cover"
+                      onClick={() => playVideo(index)}
+                      controls
+                    >
+                      <source src={video.src} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/10 transition-all duration-300">
+                      <button
+                        className="w-16 h-16 rounded-full bg-teal-600 flex items-center justify-center hover:bg-teal-700 transition-all duration-300"
+                        onClick={() => playVideo(index)}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-8 w-8 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">{video.title}</h3>
+                    <span className="inline-block bg-teal-600 px-3 py-1 rounded-full text-sm text-white capitalize mb-4">
+                      {video.category}
+                    </span>
+                    <p className="text-gray-300 text-sm">{video.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-gray-800 rounded-xl p-8 text-center">
+              <p className="text-gray-400">No videos available for this category.</p>
+            </div>
+          )}
+        </div>
+      )}
 
-        .carousel-container {
-          position: relative;
-          height: 580px;
-          margin: 0 auto;
-          perspective: 1200px;
-          overflow: visible;
-          user-select: none;
-        }
+      {/* Lightbox */}
+      {activeLightbox && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 p-4 md:p-10 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <div className="relative max-w-5xl w-full max-h-full" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-teal-600 text-white rounded-full p-2 transition-all duration-300"
+              onClick={closeLightbox}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-        .carousel-stage {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+            {activeTab === 'photos' ? (
+              <img
+                src={activeLightbox.src}
+                alt={activeLightbox.title}
+                className="w-full max-h-[75vh] object-contain rounded-lg"
+              />
+            ) : (
+              <video
+                controls
+                autoPlay
+                className="w-full max-h-[75vh] object-contain rounded-lg"
+              >
+                <source src={activeLightbox.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
 
-        .carousel-card {
-          position: absolute;
-          width: 380px;
-          height: 500px;
-          transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-          cursor: pointer;
-        }
+            <div className="bg-black/70 p-4 rounded-b-lg">
+              <h3 className="text-lg md:text-xl font-bold text-white mb-1">{activeLightbox.title}</h3>
+              <span className="inline-block bg-teal-600 px-2 py-1 rounded-full text-xs text-white capitalize">
+                {activeLightbox.category}
+              </span>
+            </div>
 
-        .carousel-card.active {
-          cursor: default;
-        }
+            <button
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/50 hover:bg-teal-600 text-white rounded-full p-2 transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateLightbox(-1);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-        .carousel-card-inner {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 20px;
-          overflow: hidden;
-          transform-style: preserve-3d;
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-          transition: all 0.6s ease;
-        }
-
-        .carousel-card.active .carousel-card-inner {
-          box-shadow: 0 25px 50px rgba(20, 184, 166, 0.3), 0 0 30px rgba(20, 184, 166, 0.2);
-          border: 3px solid #14b8a6;
-        }
-
-        .carousel-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 1s ease;
-        }
-
-        .carousel-card:hover .carousel-image {
-          transform: scale(1.05);
-        }
-
-        .carousel-caption {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 25px;
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6), transparent);
-          color: white;
-          transform: translateY(100%);
-          opacity: 0;
-          transition: all 0.5s ease;
-        }
-
-        .carousel-caption.active,
-        .carousel-card:hover .carousel-caption {
-          transform: translateY(0);
-          opacity: 1;
-        }
-
-        .card-title {
-          font-size: 24px;
-          font-weight: 600;
-          margin: 0 0 10px;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-category {
-          display: inline-block;
-          background-color: #14b8a6;
-          color: white;
-          font-size: 14px;
-          font-weight: 500;
-          padding: 5px 15px;
-          border-radius: 30px;
-          text-transform: capitalize;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .carousel-nav {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background: rgba(31, 41, 55, 0.9);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          z-index: 100;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-          color: #14b8a6;
-          border: none;
-          outline: none;
-          transition: all 0.3s ease;
-        }
-
-        .carousel-nav:hover {
-          background: #14b8a6;
-          color: white;
-          transform: translateY(-50%) scale(1.1);
-          box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
-        }
-
-        .carousel-nav.prev {
-          left: 0;
-        }
-
-        .carousel-nav.next {
-          right: 0;
-        }
-
-        .nav-icon {
-          width: 28px;
-          height: 28px;
-        }
-
-        .carousel-controls {
-          max-width: 800px;
-          margin: 30px auto 0;
-          padding: 0 20px;
-        }
-
-        .carousel-indicators {
-          display: flex;
-          gap: 10px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-
-        .carousel-indicator {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background-color: #4b5563;
-          border: none;
-          padding: 0;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .carousel-indicator.active {
-          background-color: #14b8a6;
-          transform: scale(1.5);
-          box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
-        }
-
-        .autoplay-button {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: #1f2937;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 2px solid #374151;
-          cursor: pointer;
-          color: #9ca3af;
-          transition: all 0.3s ease;
-        }
-
-        .autoplay-button:hover {
-          color: #14b8a6;
-          transform: scale(1.05);
-          border-color: #14b8a6;
-        }
-
-        .autoplay-button.active {
-          background: #14b8a6;
-          color: white;
-          border-color: #14b8a6;
-        }
-
-        .thumbnails-container {
-          max-width: 900px;
-          margin: 25px auto 0;
-          overflow-x: auto;
-          padding: 15px 0;
-          scrollbar-width: thin;
-          scrollbar-color: #14b8a6 #1f2937;
-        }
-
-        .thumbnails-container::-webkit-scrollbar {
-          height: 6px;
-        }
-
-        .thumbnails-container::-webkit-scrollbar-track {
-          background: #1f2937;
-          border-radius: 10px;
-        }
-
-        .thumbnails-container::-webkit-scrollbar-thumb {
-          background-color: #14b8a6;
-          border-radius: 10px;
-        }
-
-        .thumbnails-track {
-          display: flex;
-          gap: 15px;
-          padding: 5px;
-        }
-
-        .thumbnail {
-          flex: 0 0 100px;
-          height: 70px;
-          border-radius: 10px;
-          overflow: hidden;
-          position: relative;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .thumbnail img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.3s ease;
-        }
-
-        .thumbnail-overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .thumbnail:hover .thumbnail-overlay {
-          opacity: 1;
-        }
-
-        .thumbnail-index {
-          color: white;
-          font-weight: bold;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-        }
-
-        .thumbnail:hover {
-          transform: translateY(-5px);
-        }
-
-        .thumbnail.active {
-          border: 3px solid #14b8a6;
-          box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
-          transform: scale(1.1);
-        }
-
-        .thumbnail.active .thumbnail-overlay {
-          background: rgba(20, 184, 166, 0.3);
-          opacity: 1;
-        }
-
-        /* Additional effects and responsive adjustments */
-        @media (max-width: 1024px) {
-          .carousel-container {
-            height: 520px;
-          }
-
-          .carousel-card {
-            width: 340px;
-            height: 460px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .carousel-container {
-            height: 450px;
-          }
-
-          .carousel-card {
-            width: 300px;
-            height: 400px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .carousel-container {
-            height: 400px;
-          }
-
-          .carousel-card {
-            width: 260px;
-            height: 350px;
-          }
-
-          .card-title {
-            font-size: 20px;
-          }
-
-          .carousel-nav {
-            width: 50px;
-            height: 50px;
-          }
-
-          .nav-icon {
-            width: 24px;
-            height: 24px;
-          }
-
-          .thumbnail {
-            flex: 0 0 80px;
-            height: 60px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .carousel-container {
-            height: 360px;
-          }
-
-          .carousel-card {
-            width: 220px;
-            height: 300px;
-          }
-
-          .carousel-caption {
-            padding: 15px;
-          }
-
-          .card-title {
-            font-size: 18px;
-            margin-bottom: 5px;
-          }
-
-          .card-category {
-            font-size: 12px;
-            padding: 4px 10px;
-          }
-        }
-      `}</style>
+            <button
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/50 hover:bg-teal-600 text-white rounded-full p-2 transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateLightbox(1);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Gallery;
+export default ResortGallery;
