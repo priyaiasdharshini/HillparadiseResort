@@ -114,13 +114,13 @@ const ActivityMapPage = () => {
                 
                 {/* Resort Title - responsive font size and position */}
                 <div className="absolute left-1/2 top-2 md:top-6 transform -translate-x-1/2 px-4 md:px-8 py-2 md:py-4 border-2 border-amber-700 rounded-lg bg-amber-900/50 text-center">
-                  <h2 className="text-lg md:text-2xl font-bold text-amber-200">HILL PARADISE RESORT</h2>
-                  <p className="text-xs md:text-base text-amber-300/80">Adventure Activities Map</p>
+                  <h2 className="text-lg md:text-2xl font-bold text-white-200">HILL PARADISE RESORT</h2>
+                  <p className="text-xs md:text-base text-white-300/80">Adventure Activities Map</p>
                 </div>
                 
                 {/* Activity Schedule - repositioned for mobile */}
                 <div className={`absolute ${isMobile ? 'left-1/2 -translate-x-1/2 bottom-2' : 'right-6 top-24'} w-64 bg-amber-900/70 border-2 border-amber-700 rounded-lg p-3 md:p-4 ${isMobile ? 'text-xs' : 'text-sm'}`}>
-                  <h3 className="text-center font-bold text-amber-200 mb-2 md:mb-3">ACTIVITY SCHEDULE</h3>
+                  <h3 className="text-center font-bold text-white-200 mb-2 md:mb-3">ACTIVITY SCHEDULE</h3>
                   <div className="space-y-1 md:space-y-2">
                     {activitySchedule.map((item, index) => (
                       <div key={index} className="flex items-center">
@@ -134,7 +134,7 @@ const ActivityMapPage = () => {
                 {/* Map Legend - hidden on mobile */}
                 {!isMobile && (
                   <div className="absolute left-6 bottom-6 w-52 bg-amber-900/70 border-2 border-amber-700 rounded-lg p-4">
-                    <h3 className="text-center font-bold text-amber-200 mb-3">RESORT ACTIVITY MAP</h3>
+                    <h3 className="text-center font-bold text-white-200 mb-3">RESORT ACTIVITY MAP</h3>
                     <div className="space-y-2">
                       <div className="flex items-center">
                         <div className="w-8 h-1 bg-amber-400"></div>
@@ -224,7 +224,7 @@ const ActivityMapPage = () => {
             
             <div className="bg-green-900/40 rounded-xl shadow-2xl overflow-hidden p-4 md:p-8 border-2 border-teal-800">
               <div className="text-center mb-4 md:mb-6">
-                <h3 className="text-xl md:text-2xl font-bold text-amber-400 mb-2">ADVENTURE ACTIVITY MAP</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-white-400 mb-2">ADVENTURE ACTIVITY MAP</h3>
                 <button className="bg-teal-600 hover:bg-amber-700 text-white py-1 md:py-2 px-4 md:px-6 rounded-full transition-all duration-300 inline-flex items-center">
                   Join here
                   <svg className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -233,7 +233,7 @@ const ActivityMapPage = () => {
                 </button>
               </div>
               
-              <div className="border-l-4 border-amber-500 pl-3 md:pl-6 ml-2 md:ml-4 py-2 md:py-4 space-y-4 md:space-y-8">
+              <div className="border-l-4 border-white-500 pl-3 md:pl-6 ml-2 md:ml-4 py-2 md:py-4 space-y-4 md:space-y-8">
                 <div>
                   <h4 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3">ACTIVITY SCHEDULE</h4>
                   <div className="space-y-2 md:space-y-4">

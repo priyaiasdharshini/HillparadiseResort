@@ -365,7 +365,7 @@ const Home = () => {
                   '/src/assets/images/rooms1.JPG',
               },
               {
-                name: 'Mud house Paradise',
+                name: 'Mudhouse Paradise',
                 description: 'A serene retreat surrounded by lush tropical gardens.',
                 price: 'From 1500 per night',
                 image:
