@@ -38,10 +38,17 @@ const ResortGallery = () => {
 
   const videoItems = [
     {
-      src: '/src/assets/images/DJI_0370.MP4',
+      src: '/src/assets/images/IMG_8506.MP4',
       poster: '/images/video-poster.jpg',
       category: 'activities',
       title: 'Resort Aerial View',
+      description: 'Beautiful aerial footage of our resort and surrounding nature',
+    },
+      {
+      src: '/src/assets/images/Dji 0333.mp4',
+      poster: '/images/video-poster.jpg',
+      category: 'mudhouse',
+      title: 'Mud house Aerial View',
       description: 'Beautiful aerial footage of our resort and surrounding nature',
     },
     {
@@ -51,6 +58,13 @@ const ResortGallery = () => {
       title: 'Nature Trekking',
       description: 'Guided trekking through our scenic nature trails',
     },
+    {
+      src: '/src/assets/images/Dji 0339.mp4',
+      poster: '/images/trekking-poster.jpg',
+      category: 'rooms',
+      title: 'Mango House',
+      description: 'A house under the Naturic Mango Tree',
+    },
      {
       src: '/src/assets/images/waterfallslidingvideo.mp4',
       poster: '/images/trekking-poster.jpg',
@@ -59,7 +73,6 @@ const ResortGallery = () => {
       description: 'Sliding waterFall from our Hill paradise Location',
     },
   ];
-
   const getFilteredItems = () => {
     const items = activeTab === 'photos' ? photoItems : videoItems;
     return activeCategory === 'all' ? items : items.filter((item) => item.category === activeCategory);
