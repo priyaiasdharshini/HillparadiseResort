@@ -553,4 +553,4 @@ const ResortGallery = () => {
   );
 };
 
-export default ResortGallery;
+export default ResortGallery; 
