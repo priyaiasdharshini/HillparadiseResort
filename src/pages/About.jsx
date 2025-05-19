@@ -8,7 +8,7 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-teal-950/80 to-gray-900/70 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/IMG_5799.JPG')" }}
+          style={{ backgroundImage: "url('https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5799_da86um.jpg')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight drop-shadow-lg animate-slide-in-left">
@@ -26,7 +26,7 @@ const About = () => {
           <div className="flex flex-col md:flex-row md:items-center md:gap-12">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <img 
-                src="/src/assets/images/IMG_5793.JPG" 
+                src="https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5793_iyjisb.jpg" 
                 alt="Resort history" 
                 className="rounded-xl shadow-2xl w-full object-cover h-64 sm:h-80 md:h-96 transform transition-transform duration-300 hover:scale-105" 
               />

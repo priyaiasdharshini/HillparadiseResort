@@ -12,42 +12,42 @@ const Rooms = () => {
       type: 'mudhouse',
       description: 'Reflects the natural, grounding feel of mud architecture, offering an authentic, eco-conscious stay immersed in the serene beauty of the hills.',
       features: ['Nature view', 'Private balcony', 'Mudhouse', 'Sunset'],
-      image: '/src/assets/images/rooms1.JPG'
+      image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms1_jyorah.jpg'
     },
     {
       name: 'Mudhouse - Earth Nest',
       type: 'mudhouse',
       description: 'Immerse yourself in nature with our peaceful garden suite retreat.',
       features: ['Garden view', 'Peaceful living area', 'Mango Tree Treat', 'Nature Treat'],
-      image: '/src/assets/images/rooms2.JPG'
+      image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms2_gjl9qr.jpg'
     },
     {
       name: 'Presidential Villa',
       type: 'rooms',
       description: 'The ultimate luxury experience with private pool and panoramic views.',
       features: ['Private waterfall', 'nature view', 'Peace', 'Birds Sound'],
-      image: '/src/assets/images/rooms5.jpeg'
+      image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms5_tw9h7u.jpg'
     },
     {
       name: 'Mudhouse - Clay Paradise',
       type: 'mudhouse',
       description: 'Perfect for families with spacious accommodations and convenient amenities.',
       features: ['Connecting rooms', 'Gaming console', 'Children amenities', 'Family dining area'],
-      image: '/src/assets/images/mudhouses.JPG'
+      image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/mudhouses_ay8iom.jpg'
     },
     {
       name: 'Mango House',
       type: 'rooms',
       description: 'Steps from the sand with exclusive beach access and luxurious accommodations.',
       features: ['Direct beach access', 'Private pool', 'Outdoor dining area', 'Personal chef available'],
-      image: '/src/assets/images/rooms3.JPG'
+      image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg'
     },
     {
       name: 'Tree House',
       type: 'tree house',
       description: 'Enjoy breathtaking mountain views from this well-appointed room.',
       features: ['Mountain views', 'Green Sight', 'Nature leaf fall', 'Wood Steps'],
-      image: '/src/assets/images/treehouse.jpeg'
+      image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/treehouse_dfnno4.jpg'
     }
   ];
   
@@ -197,7 +197,7 @@ const Rooms = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-gray-900/80 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/IMG_5799.JPG')" }}
+          style={{ backgroundImage: "url('https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5799_da86um.jpg')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-4 tracking-tight">
@@ -516,7 +516,7 @@ const Rooms = () => {
                   </div>
                 </div>
                 <img 
-                  src="\src\assets\images\IMG_5799.JPG" 
+                  src="https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5799_da86um.jpg" 
                   alt="Virtual tour thumbnail" 
                   className="w-full h-full object-cover opacity-50"
                 />

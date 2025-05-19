@@ -38,19 +38,19 @@ const EnhancedHero = () => {
   const heroSlides = [
     {
       image:
-        '/src/assets/images/rooms1.JPG',
+        'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms1_jyorah.jpg',
       title: 'Discover Hill Paradise',
       subtitle: 'Where luxury meets natural beauty',
     },
     {
       image:
-        '/src/assets/images/rooms2.JPG',
+        'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms2_gjl9qr.jpg',
       title: 'Unforgettable Experiences',
       subtitle: 'Create memories that last a lifetime',
     },
     {
       image:
-        '/src/assets/images/rooms3.JPG',
+        'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg',
       title: 'Exclusive Retreat At Hill Paradise',
       subtitle: 'Your private sanctuary awaits',
     },
@@ -362,21 +362,21 @@ const Home = () => {
                 description: 'Elegant Mudhouse with mesmerizing Nature vistas and premium comforts.',
                 price: 'From 1500 per night',
                 image:
-                  '/src/assets/images/rooms1.JPG',
+                  'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms1_jyorah.jpg',
               },
               {
                 name: 'Mudhouse Paradise',
                 description: 'A serene retreat surrounded by lush tropical gardens.',
                 price: 'From 1500 per night',
                 image:
-                  '/src/assets/images/rooms2.JPG',
+                  'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms2_gjl9qr.jpg',
               },
               {
                 name: 'Presidential Villa',
                 description: 'Unparalleled nature with a private WaterFall and sweeping views.',
                 price: 'From 1500 per night',
                 image:
-                  '/src/assets/images/rooms3.JPG',
+                  'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg',
               },
             ].map((room, index) => (
               <div
@@ -489,7 +489,7 @@ const Home = () => {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <img
-                  src="/src/assets/images/IMG_5793.JPG"
+                  src="https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5793_iyjisb.jpg"
                   alt="Resort view"
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                 />

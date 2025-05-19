@@ -14,59 +14,59 @@ const ResortGallery = () => {
   const photoItems = [
     { src: '/src/assets/images/rooms1.JPG', category: 'mudhouse', title: 'Traditional Mud House Clay Haven' },
     { src: '/src/assets/images/rooms2.JPG', category: 'mudhouse', title: 'Mud House Interior Suite' },
-    { src: '/src/assets/images/mudhouse2.jpeg', category: 'mudhouse', title: 'Mud House Courtyard' },
-    { src: '/src/assets/images/IMG_5796.JPG', category: 'rooms', title: 'Deluxe Nature View Room' },
-    { src: '/src/assets/images/rooms3.JPG', category: 'rooms', title: 'Presidential Suite' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/mudhouse2_etxjrr.jpg', category: 'mudhouse', title: 'Mud House Courtyard' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5796_hyynmk.jpg', category: 'rooms', title: 'Deluxe Nature View Room' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg', category: 'rooms', title: 'Presidential Suite' },
 
-    { src: '/src/assets/images/WhatsApp Image 2025-05-15 at 5.09.13 PM.jpeg', category: 'rooms', title: 'Garden Suite' },
-    { src: '/src/assets/images/falls.jpeg', category: 'activities', title: 'Waterfall' },
-    { src: '/src/assets/images/ofroadjeefsafari.jpeg', category: 'activities', title: 'Nature Hiking Trail' },
-    { src: '/src/assets/images/trekking.jpeg', category: 'activities', title: 'View Point Trekking' },
-    { src: 'src/assets/images/ofroadjeefsafari.jpeg', category: 'activities', title: 'Off road Safari' },
-    { src: '/src/assets/images/guestatwaterfall.jpeg', category: 'activities', title: 'waterfall' },
-    { src: '/src/assets/images/firecamp.jpeg', category: 'activities', title: 'FireCamp' },
-    { src: '/src/assets/images/tentclient.jpeg', category: 'activities', title: 'tent stay' },
-    { src: '/src/assets/images/music dj.jpeg', category: 'activities', title: 'Dj Music' },
-    { src: '/src/assets/images/barbeque.jpeg', category: 'activities', title: 'Barbeque' },
-    { src: '/src/assets/images/rooms4.jpeg', category: 'rooms', title: 'Nature Treat' },
-    { src: '/src/assets/images/rooms5.jpeg', category: 'rooms', title: 'Villa' },
-    { src: '/src/assets/images/IMG_5783.JPG', category: 'rooms', title: 'Room' },
-    { src: '/src/assets/images/IMG_5784.JPG', category: 'rooms', title: 'Room' },
-    { src: '/src/assets/images/tentclient (2).jpeg', category: 'activities', title: 'Tent Stay' }
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/WhatsApp_Image_2025-05-15_at_5.09.13_PM_b86mzi.jpg', category: 'rooms', title: 'Garden Suite' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/falls_yppje1.jpg', category: 'activities', title: 'Waterfall' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/ofroadjeefsafari_cfnofd.jpg', category: 'activities', title: 'Nature Hiking Trail' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/trekking_bjbwov.jpg', category: 'activities', title: 'View Point Trekking' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/ofroadjeefsafari_cfnofd.jpg', category: 'activities', title: 'Off road Safari' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/guestatwaterfall_fc9sl5.jpg', category: 'activities', title: 'waterfall' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/firecamp_wmm1xw.jpg', category: 'activities', title: 'FireCamp' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/tentclient_gui2ew.jpg', category: 'activities', title: 'tent stay' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/music_dj_vkti0p.jpg', category: 'activities', title: 'Dj Music' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/barbeque_oh8wwn.jpg', category: 'activities', title: 'Barbeque' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms4_vgwwh8.jpg', category: 'rooms', title: 'Nature Treat' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms5_tw9h7u.jpg', category: 'rooms', title: 'Villa' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5783_vt2hpo.jpg', category: 'rooms', title: 'Room' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5784_mbxtra.jpg', category: 'rooms', title: 'Room' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/tentclient_2_ahxivw.jpg', category: 'activities', title: 'Tent Stay' }
 
   ];
 
   const videoItems = [
     {
-      src: '/src/assets/images/IMG_8506.MP4',
+      src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/video/upload/q_auto,f_auto/IMG_8506_zlpvwb.mp4',
       poster: '/images/video-poster.jpg',
       category: 'activities',
       title: 'Resort Aerial View',
       description: 'Beautiful aerial footage of our resort and surrounding nature',
     },
       {
-      src: '/src/assets/images/Dji 0333.mp4',
+      src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/video/upload/q_auto,f_auto/Dji_0333_qmvav0.mp4',
       poster: '/images/video-poster.jpg',
       category: 'mudhouse',
       title: 'Mud house Aerial View',
       description: 'Beautiful aerial footage of our resort and surrounding nature',
     },
     {
-      src: '/src/assets/images/trekking video.mp4',
+      src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/video/upload/q_auto,f_auto/trekking_video_ldkgma.mp4',
       poster: '/images/trekking-poster.jpg',
       category: 'activities',
       title: 'Nature Trekking',
       description: 'Guided trekking through our scenic nature trails',
     },
     {
-      src: '/src/assets/images/Dji 0339.mp4',
+      src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/video/upload/q_auto,f_auto/Dji_0339_ydyoms.mp4',
       poster: '/images/trekking-poster.jpg',
       category: 'rooms',
       title: 'Mango House',
       description: 'A house under the Naturic Mango Tree',
     },
      {
-      src: '/src/assets/images/waterfallslidingvideo.mp4',
+      src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/video/upload/q_auto,f_auto/waterfallslidingvideo_s0ks4f.mp4',
       poster: '/images/trekking-poster.jpg',
       category: 'activities',
       title: 'Sliding WaterFall',
@@ -138,7 +138,7 @@ const ResortGallery = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-black/80 z-10" />
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/IMG_5799.JPG')" }}
+          style={{ backgroundImage: "url('https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5799_da86um.jpg')" }}
         />
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
