@@ -272,18 +272,7 @@ const Contact = () => {
               <strong>Address:</strong> No 841, Oilavayal, Keezhanthoor Kanthalloor, Idukki 685620 Kerala, India
             </p>
             <div className="space-y-4">
-              <div>
-                <h4 className="font-medium text-white">By Air</h4>
-                <p className="text-white">
-                  The nearest international airport is 45 minutes away by car. We offer complimentary airport transfers for all guests.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-medium text-white">By Sea</h4>
-                <p className="text-white">
-                  Private boat transfers can be arranged from the mainland port, offering a scenic 30-minute journey to our private dock.
-                </p>
-              </div>
+           
             </div>
           </div>
         </div>

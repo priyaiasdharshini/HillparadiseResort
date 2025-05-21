@@ -26,7 +26,7 @@ const About = () => {
           <div className="flex flex-col md:flex-row md:items-center md:gap-12">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <img 
-                src="https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5793_iyjisb.jpg" 
+                src="https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/logo_eadwtz.jpg" 
                 alt="Resort history" 
                 className="rounded-xl shadow-2xl w-full object-cover h-64 sm:h-80 md:h-96 transform transition-transform duration-300 hover:scale-105" 
               />
@@ -40,7 +40,7 @@ const About = () => {
                 Over the years, we've evolved into a globally celebrated eco-luxury destination, staying true to our commitment to sustainable practices and authentic experiences.
               </p>
               <p className="text-base sm:text-lg text-white leading-relaxed">
-                Now boasting 120 rooms, three farm-to-table restaurants, and a serene spa, our resort offers an unparalleled escape into nature's splendor.
+                Now boasting 15 rooms, three farm-to-table restaurants, and a serene spa, our resort offers an unparalleled escape into nature's splendor.
               </p>
             </div>
           </div>
@@ -277,35 +277,7 @@ const About = () => {
         </div>
       </section>
       
-      {/* Awards Section */}
-      <section className="py-12 md:py-16 bg-teal-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-4 tracking-wide">Awards & Recognition</h2>
-            <p className="text-base sm:text-lg text-white max-w-3xl mx-auto leading-relaxed">
-              Honored by industry leaders for our dedication to excellence.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              "Five-Star Rating - Global Luxury Travel Guide",
-              "Best Luxury Resort - World Travel Awards",
-              "Sustainable Tourism Excellence Award",
-              "Top 10 Beachfront Resorts - Luxury Travel Magazine"
-            ].map((award, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg border border-teal-700/30 flex flex-col items-center transform transition-all duration-300 hover:-translate-y-2 hover:shadow-teal-500/20">
-                <div className="text-teal-400 mb-4">
-                  <svg className="w-10 h-10 sm:w-12 sm:h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
-                </div>
-                <p className="text-sm sm:text-base text-center font-medium text-white">{award}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+   
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import resortLogo from '/src/assets/images/hillparadise.PNG';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,13 +44,22 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-            <div className="h-10">
-  <img 
-    src={resortLogo} 
-    alt="Hill Paradise Resort"
-    className="h-16 md:h-16 w-45"
-  />
-</div>
+              <div className="flex flex-col">
+                <span className={`text-3xl font-extrabold tracking-wider transition-all duration-300 ${
+                  isScrolled 
+                    ? 'text-teal-600 drop-shadow-sm' 
+                    : 'text-white text-shadow-lg'
+                } font-serif`}>
+                  Hill Paradise
+                </span>
+                <span className={`text-sm uppercase tracking-widest transition-all duration-300 font-light ${
+                  isScrolled 
+                    ? 'text-gray-600 ml-1' 
+                    : 'text-gray-100 ml-1 text-shadow-sm'
+                }`}>
+                  Resort & Retreat
+                </span>
+              </div>
             </Link>
           </div>
           
