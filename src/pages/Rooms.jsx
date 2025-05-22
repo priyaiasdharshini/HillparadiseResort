@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Rooms = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedRoom, setSelectedRoom] = useState(null);
   
   const filters = ['all', 'mudhouse', 'rooms', 'tree house'];
   
@@ -32,14 +33,14 @@ const Rooms = () => {
       name: 'Mudhouse - Clay Paradise',
       type: 'mudhouse',
       description: 'Perfect for families with spacious accommodations and convenient amenities.',
-      features: ['Connecting rooms', 'Gaming console', 'Children amenities', 'Family dining area'],
+      features: ['Connecting rooms', 'Cool Place', 'Children amenities', 'Family dining area'],
       image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/mudhouses_ay8iom.jpg'
     },
     {
       name: 'Mango House',
       type: 'rooms',
       description: 'Steps from the sand with exclusive beach access and luxurious accommodations.',
-      features: ['Direct beach access', 'Private pool', 'Outdoor dining area', 'Personal chef available'],
+      features: ['Direct Nature View access', 'Private WaterFall', 'Outdoor dining area'],
       image: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg'
     },
     {
@@ -54,6 +55,53 @@ const Rooms = () => {
   const filteredAccommodations = activeFilter === 'all' 
     ? accommodations 
     : accommodations.filter(room => room.type === activeFilter);
+
+  // Modal Component
+  const RoomModal = ({ room, onClose }) => {
+    if (!room) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+        <div className="bg-gray-800 rounded-xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 relative">
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-white hover:text-teal-400 transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          {/* Modal Content */}
+          <img
+            src={room.image}
+            alt={room.name}
+            className="w-full h-64 object-cover rounded-lg mb-4"
+          />
+          <h2 className="text-2xl font-bold text-white mb-3">{room.name}</h2>
+          <p className="text-gray-300 mb-4">{room.description}</p>
+          <h3 className="text-lg font-semibold text-teal-400 mb-2">Features</h3>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {room.features.map((feature, idx) => (
+              <span
+                key={idx}
+                className="text-xs bg-teal-600/20 text-white px-3 py-1 rounded-full"
+              >
+                {feature}
+              </span>
+            ))}
+          </div>
+          <Link
+            to="/contact"
+            className="inline-block bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded-md transition-colors duration-300 text-center w-full"
+          >
+            Book Now
+          </Link>
+        </div>
+      </div>
+    );
+  };
   
   // Unified card style for all rooms
   const RoomCard = ({ room }) => {
@@ -97,12 +145,12 @@ const Rooms = () => {
             </div>
             
             {/* CTA Button */}
-            <Link
-              to="/RoomDetail"
+            <button
+              onClick={() => setSelectedRoom(room)}
               className="mt-4 bg-teal-600 hover:bg-teal-500 text-white py-2 px-4 rounded-md transition-colors duration-300 inline-block transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0"
             >
               Discover
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -161,6 +209,9 @@ const Rooms = () => {
         </div>
       </section>
       
+      {/* Modal */}
+      <RoomModal room={selectedRoom} onClose={() => setSelectedRoom(null)} />
+      
       {/* Experience Section */}
       <section className="py-16 md:py-24 bg-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -218,7 +269,6 @@ const Rooms = () => {
         </div>
       </section>
       
-      {/* Rest of the page remains unchanged */}
       {/* Booking CTA */}
       <section className="py-16 md:py-24 bg-emerald-950 relative">
         <div className="absolute inset-0 opacity-20">
@@ -301,25 +351,25 @@ const Rooms = () => {
                 name: "MALATHY",
                 location: "Tirunelveli, Tamilnadu",
                 quote: "The Presidential Villa exceeded all our expectations. The private falls and sun sets were breathtaking, and the staff went above and beyond to make our anniversary special.",
-                avatar: "/src/assets/images/lighthouse.jpeg"
+                
               },
               {
                 name: "SURAV",
                 location: "Kochin, Kerala",
                 quote: "Our family had an amazing time in the Family Suite. The children's amenities were thoughtful, and the connecting rooms gave everyone their own space while keeping us together.",
-                avatar: "/src/assets/images/tentclient.jpeg"
+                
               },
               {
                 name: "MANIRAM",
                 location: "Chennai, Tamilnadu",
                 quote: "My stay in the Deluxe sun set Room was the perfect escape. Waking up to those stunning views every morning was the highlight of my trip.",
-                avatar: "/src/assets/images/trekking.jpeg"
+               
               }
             ].map((testimonial, index) => (
               <div key={index} className="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-xl shadow-lg border border-white/5 hover:border-teal-500/20 transition-all duration-300">
                 <div className="flex items-center mb-6">
                   <div className="flex-shrink-0 mr-4">
-                    <img className="h-12 w-12 rounded-full object-cover" src={testimonial.avatar} alt={testimonial.name} />
+                    
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white">{testimonial.name}</h3>
@@ -339,8 +389,6 @@ const Rooms = () => {
           </div>
         </div>
       </section>
-
-      {/* Other sections remain unchanged */}
     </div>
   );
 };

@@ -110,13 +110,13 @@ const EnhancedHero = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  to="/rooms"
+                  to="/Contact"
                   className="bg-teal-500 hover:bg-teal-600 text-gray-100 py-2 px-6 sm:px-8 rounded-md text-base sm:text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
                   Book Now
                 </Link>
                 <Link
-                  to="/rooms"
+                  to="/Activities"
                   className="bg-transparent hover:bg-teal-900/20 text-gray-100 border border-gray-300 py-2 px-6 sm:px-8 rounded-md text-base sm:text-lg font-medium transition-all duration-300 backdrop-blur-sm hover:shadow-lg"
                 >
                   Explore Experiences
@@ -127,97 +127,114 @@ const EnhancedHero = () => {
         </div>
 
         {/* Booking bar */}
-        <div className="px-4 sm:px-6 mt-8 md:mt-12">
-          <div className="max-w-6xl mx-auto">
-            <div className="bg-gray-900/30 backdrop-blur-md rounded-xl p-4 md:p-6 border border-gray-700/20 shadow-2xl">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="relative">
-                  <div className="flex items-center text-gray-100 mb-2">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
-                      <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" />
-                      <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2" />
-                      <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2" />
-                    </svg>
-                    <span>Check-in</span>
-                  </div>
-                  <input
-                    type="date"
-                    className="w-full bg-gray-900/20 rounded-lg p-3 text-gray-100 border border-gray-700/30 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  />
-                </div>
-                <div className="relative">
-                  <div className="flex items-center text-gray-100 mb-2">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
-                      <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" />
-                      <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2" />
-                      <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2" />
-                    </svg>
-                    <span>Check-out</span>
-                  </div>
-                  <input
-                    type="date"
-                    className="w-full bg-gray-900/20 rounded-lg p-3 text-gray-100 border border-gray-700/30 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  />
-                </div>
-                <div className="relative">
-                  <div className="flex items-center text-gray-100 mb-2">
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                    <span>Guests</span>
-                  </div>
-                  <select
-                    className="w-full bg-gray-900/20 rounded-lg p-3 text-gray-100 border border-gray-700/30 focus:outline-none focus:ring-2 focus:ring-teal-500 appearance-none"
-                  >
-                    <option value="1">1 Adult</option>
-                    <option value="2">2 Adults</option>
-                    <option value="3">2 Adults, 1 Child</option>
-                    <option value="4">2 Adults, 2 Children</option>
-                  </select>
-                  <svg
-                    className="absolute right-3 bottom-3 w-5 h-5 text-gray-100 pointer-events-none"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-                <div className="flex items-end">
-                  <button className="w-full bg-teal-500 hover:bg-teal-600 text-gray-100 py-3 px-4 rounded-lg transition-colors duration-300 font-medium flex items-center justify-center">
-                    Check Availability
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="px-4 sm:px-6 mt-8 md:mt-12">
+  <div className="max-w-5xl mx-auto">
+    <div className="bg-transparent rounded-2xl p-4 sm:p-6 border border-teal-500/20 shadow-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+        {/* Check-in Date */}
+        <div className="relative">
+          <label className="flex items-center text-white text-sm font-medium mb-2">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
+              <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" />
+              <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2" />
+              <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2" />
+            </svg>
+            Check-in
+          </label>
+          <input
+            type="date"
+            className="w-full bg-gray-800/10 text-white rounded-lg p-2.5 border border-teal-500/30 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all"
+          />
         </div>
+
+        {/* Check-out Date */}
+        <div className="relative">
+          <label className="flex items-center text-white text-sm font-medium mb-2">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2" />
+              <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2" />
+              <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2" />
+              <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2" />
+            </svg>
+            Check-out
+          </label>
+          <input
+            type="date"
+            className="w-full bg-gray-800/10 text-white rounded-lg p-2.5 border border-teal-500/30 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all"
+          />
+        </div>
+
+        {/* Room Type */}
+        <div className="relative">
+          <label className="flex items-center text-white text-sm font-medium mb-2">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Room Type
+          </label>
+          <select
+            className="w-full bg-gray-800/10 text-white rounded-lg p-2.5 border border-teal-500/30 focus:outline-none focus:ring-2 focus:ring-teal-400 appearance-none"
+          >
+            <option value="all">All Rooms</option>
+            <option value="mudhouse">Mudhouse</option>
+            <option value="rooms">Standard Room</option>
+            <option value="tree house">Tree House</option>
+          </select>
+          <svg
+            className="absolute right-2.5 bottom-3 w-4 h-4 text-white pointer-events-none"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+
+        {/* Guests */}
+        <div className="relative">
+          <label className="flex items-center text-white text-sm font-medium mb-2">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            Guests
+          </label>
+          <select
+            className="w-full bg-gray-800/10 text-white rounded-lg p-2.5 border border-teal-500/30 focus:outline-none focus:ring-2 focus:ring-teal-400 appearance-none"
+          >
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+          </select>
+          <svg
+            className="absolute right-2.5 bottom-3 w-4 h-4 text-white pointer-events-none"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+
+        {/* Search Button */}
+        <div className="flex items-end">
+          <button className="w-full bg-teal-600 hover:bg-teal-500 text-white py-2.5 px-4 rounded-lg transition-colors duration-300 font-semibold flex items-center justify-center shadow-md">
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            Find Your Stay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
         {/* Scroll down indicator */}
         <div className="absolute bottom-8 left-0 right-0 flex justify-center z-20">
@@ -360,21 +377,21 @@ const Home = () => {
               {
                 name: 'Clay Haven',
                 description: 'Elegant Mudhouse with mesmerizing Nature vistas and premium comforts.',
-                price: 'From 1500 per night',
+                price: 'From 1500 per Person',
                 image:
                   'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms1_jyorah.jpg',
               },
               {
                 name: 'Mudhouse Paradise',
                 description: 'A serene retreat surrounded by lush tropical gardens.',
-                price: 'From 1500 per night',
+                price: 'From 1500 per Person',
                 image:
                   'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms2_gjl9qr.jpg',
               },
               {
                 name: 'Presidential Villa',
                 description: 'Unparalleled nature with a private WaterFall and sweeping views.',
-                price: 'From 1500 per night',
+                price: 'From 1500 per Person',
                 image:
                   'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg',
               },
@@ -433,21 +450,21 @@ const Home = () => {
             {[
               {
                 quote: "An extraordinary experience! The staff's dedication made our stay truly magical.",
-                author: 'Johana',
+                author: 'Mahesh',
                 location: 'Munnar, Kerala',
-                avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+                
               },
               {
                 quote: 'Beyond our wildest dreams. The views and amenities are simply spectacular.',
-                author: 'John Mathew',
+                author: 'Saran',
                 location: 'Kochin, Kerala',
-                avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+               
               },
               {
                 quote: 'Felt like royalty from start to finish. The service and attention to detail are unmatched.',
                 author: 'Malathy',
                 location: 'Tirunelveli, Tamilnadu',
-                avatar: 'https://randomuser.me/api/portraits/women/63.jpg',
+               
               },
             ].map((testimonial, index) => (
               <div
@@ -466,11 +483,7 @@ const Home = () => {
                 </div>
                 <p className="text-lg mb-6 italic text-white leading-relaxed">{testimonial.quote}</p>
                 <div className="flex items-center justify-center">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.author}
-                    className="w-12 h-12 rounded-full mr-4 border-2 border-teal-400"
-                  />
+                  
                   <div>
                     <p className="font-medium text-white">{testimonial.author}</p>
                     <p className="text-teal-300">{testimonial.location}</p>
