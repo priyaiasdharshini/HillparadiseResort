@@ -12,8 +12,8 @@ const ResortGallery = () => {
   const videoCategories = ['all', 'mudhouse', 'rooms', 'activities'];
 
   const photoItems = [
-    { src: '/src/assets/images/rooms1.JPG', category: 'mudhouse', title: 'Traditional Mud House Clay Haven' },
-    { src: '/src/assets/images/rooms2.JPG', category: 'mudhouse', title: 'Mud House Interior Suite' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms1_jyorah.jpg', category: 'mudhouse', title: 'Traditional Mud House Clay Haven' },
+    { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms2_gjl9qr.jpg', category: 'mudhouse', title: 'Mud House Interior Suite' },
     { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/mudhouse2_etxjrr.jpg', category: 'mudhouse', title: 'Mud House Courtyard' },
     { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5796_hyynmk.jpg', category: 'rooms', title: 'Deluxe Nature View Room' },
     { src: 'https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/rooms3_zhtdic.jpg', category: 'rooms', title: 'Presidential Suite' },

@@ -9,6 +9,7 @@ import Rooms from './pages/Rooms';
 import Activities from './pages/Activities';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
+import Memories from './pages/Memories';
 
 function App() {
   return (
@@ -22,8 +23,10 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/rooms" element={<Rooms />} />
+            <Route path="/memories" element={<Memories/>} />
             <Route path="/activities" element={<Activities />} />
             <Route path="/contact" element={<Contact />} />
+
           </Routes>
         </main>
         <Footer />
