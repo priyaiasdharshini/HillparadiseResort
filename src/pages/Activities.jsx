@@ -83,7 +83,7 @@ const ActivityMapPage = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-teal-900/80 to-black/80 z-10" />
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/api/placeholder/1200/600')" }}
+            style={{ backgroundImage: "url('https://res.cloudinary.com/loordhujeyakumar-cloudinary/image/upload/q_auto,f_auto/IMG_5799_da86um.jpg')" }}
           />
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
